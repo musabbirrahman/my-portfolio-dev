@@ -1,9 +1,10 @@
+import Hero from "../components/Hero";
+
 export default function Home() {
   return (
-    <main className="min-h-screen pt-24 bg-base-300">
-      <h1 className="text-center text-4xl font-bold text-primary">
-        Portfolio Build in Progress 🚀
-      </h1>
+    <main>
+      <Hero />
+      {/* We will add About, Skills, and Projects components down here next! */}
     </main>
   );
 }
