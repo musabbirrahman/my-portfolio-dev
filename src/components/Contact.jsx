@@ -77,7 +77,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <span className="text-xs font-semibold uppercase tracking-widest text-neutral-500 block mb-1">Direct Email</span>
-                    <a href="mailto:your.email@example.com" className="text-sm md:text-base text-neutral-300 hover:text-white transition-colors">
+                    <a href="mailto:musabbirrahman.dev@gmail.com" className="text-sm md:text-base text-neutral-300 hover:text-white transition-colors">
                       musabbirrahman.dev@gmail.com
                     </a>
                   </div>
@@ -90,7 +90,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <span className="text-xs font-semibold uppercase tracking-widest text-neutral-500 block mb-1">Secure Line</span>
-                    <a href="tel:+8801700000000" className="text-sm md:text-base text-neutral-300 hover:text-white transition-colors">
+                    <a href="tel:+8801330792610" className="text-sm md:text-base text-neutral-300 hover:text-white transition-colors">
                       +880 1330 792610
                     </a>
                   </div>
