@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import { motion } from "framer-motion";
 
 export default function About() {
@@ -30,31 +31,47 @@ export default function About() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-6 auto-rows-[minmax(200px,_auto)]">
           
           {/* Box 1: The Deep Bio (Spans 2 cols, 2 rows on desktop) */}
+          {/* Box 1: The Deep Bio & Portrait (Spans 2 cols, 2 rows on desktop) */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="md:col-span-2 md:row-span-2 p-8 md:p-10 rounded-3xl bg-gradient-to-br from-white/[0.03] to-transparent border border-white/[0.05] relative overflow-hidden group"
+            className="md:col-span-2 md:row-span-2 rounded-3xl bg-[#0a0a0a] border border-white/[0.05] relative overflow-hidden group flex flex-col sm:flex-row"
           >
-            <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-30 transition-opacity duration-700">
-               <svg width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" className="text-white"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            {/* Left Column: Portrait Section */}
+            {/* Left Column: Portrait Section */}
+            <div className="w-full sm:w-[45%] h-[320px] sm:h-full relative overflow-hidden shrink-0">
+              {/* Fade Gradient Overlay for seamless blending into the text */}
+              <div className="absolute inset-0 bg-gradient-to-b sm:bg-gradient-to-r from-transparent via-[#0a0a0a]/50 to-[#0a0a0a] z-10 pointer-events-none"></div>
+              <Image 
+                src="/profile.png" 
+                alt="Musabbir Rahman" 
+                width={320}
+                height={320}
+                /* ADDED: object-top and increased mobile height */
+                className="absolute inset-0 w-full h-full object-cover object-top grayscale-[40%] group-hover:grayscale-0 transition-all duration-700 opacity-80 group-hover:scale-105 group-hover:opacity-100"
+              />
             </div>
-            
-            <span className="text-xs font-semibold uppercase tracking-widest text-neutral-500 mb-6 block">Personal Architecture</span>
-            <h3 className="text-2xl md:text-3xl font-bold text-neutral-200 mb-6">
-              Bridging complex logic with premium, scalable interfaces.
-            </h3>
-            <div className="space-y-4 text-neutral-400 text-sm leading-relaxed font-light">
-              <p>
-                I am a Frontend Software Engineer driven by a philosophy of continuous shipping. I don't just consume tutorials; I architect, build, and deploy production-grade applications to break them down and understand them at the atomic level.
-              </p>
-              <p>
-                My expertise lies in the modern JavaScript ecosystem—specifically React and Next.js. I specialize in taking dense, complex data requirements and translating them into fluid, responsive, and highly performant user interfaces.
-              </p>
-              <p>
-                Currently, I am undergoing an intensive web development bootcamp to finalize my full-stack capabilities, ensuring I can architect solutions from the database schema all the way to the client-side DOM.
-              </p>
+
+            {/* Right Column: Bio Text Section */}
+            <div className="w-full sm:w-[55%] p-6 sm:p-8 md:p-10 relative z-20 flex flex-col justify-center bg-gradient-to-br from-transparent to-white/[0.02]">
+              <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-30 transition-opacity duration-700 hidden sm:block">
+                 <svg width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" className="text-white"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+              </div>
+              
+              <span className="text-xs font-semibold uppercase tracking-widest text-neutral-500 mb-4 block">Personal Architecture</span>
+              <h3 className="text-xl md:text-2xl font-bold text-neutral-200 mb-4 leading-snug">
+                Bridging complex logic with premium, scalable interfaces.
+              </h3>
+              <div className="space-y-3 text-neutral-400 text-xs md:text-sm leading-relaxed font-light">
+                <p>
+                  I am a Frontend Software Engineer driven by a philosophy of continuous shipping. I don't just consume tutorials; I architect, build, and deploy production-grade applications.
+                </p>
+                <p>
+                  My expertise lies in the modern JavaScript ecosystem. I specialize in taking dense, complex data requirements and translating them into fluid, responsive, and highly performant user interfaces.
+                </p>
+              </div>
             </div>
           </motion.div>
 
