@@ -8,9 +8,9 @@ export const projectsData = [
     longDescription:
       "A complete demo landing page for a fictional bakery: a clear hero, menu, why-us, visit, and contact sections. It is labelled as a demo everywhere, with example prices and hours, and a demo form that sends nothing.",
     features: [
-      "Hero, menu, visit, and contact sections",
-      "Mobile-first layout, no horizontal scroll",
-      "Demo contact form that sends and stores nothing",
+      "Hero, menu filter, order builder, FAQ, visit, and contact",
+      "Order total in ৳, with a message draft, demo only",
+      "Mobile-first layout, no horizontal scroll"
     ],
     tech: ["HTML5", "CSS3", "JavaScript"],
     liveLink: "/demos/landing",
@@ -45,8 +45,8 @@ export const projectsData = [
       "A before-and-after demo in a 360px phone frame, with a toggle. The Before version is intentionally broken: a fixed 900px container, nowrap titles, and a row that never stacks. The After version fixes all three, with the changes explained in plain terms.",
     features: [
       "Before and After toggle in a 360px phone frame",
-      "Three named bugs: fixed width, nowrap titles, non-stacking row",
-      "Fixed version checked for no horizontal scroll at phone width",
+      "Five named bugs, plus a code-diff view",
+      "Fixed version checked for no horizontal scroll at phone width"
     ],
     tech: ["HTML5", "CSS3", "Responsive Design"],
     liveLink: "/demos/layout-fix",
