@@ -49,7 +49,7 @@ export default function Contact() {
             Initiate Contact.
           </h2>
           <p className="text-base sm:text-lg text-neutral-400 max-w-xl mx-auto leading-relaxed font-light">
-            Whether it is a full-time opportunity, a technical consultation, or a collaborative project, my inbox is open.
+            Need a landing page or a layout fix? Send a message, no calls or meetings. I build, test on phone, tablet, and desktop, and revise until it works.
           </p>
         </motion.div>
 

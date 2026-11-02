@@ -46,21 +46,6 @@ export default function Education() {
       tech: ["Data Structures", "Algorithms", "System Design"],
       align: "left"
     },
-    {
-      step: "04",
-      phase: "Engineering Specialization",
-      title: "Modern Web Architecture",
-      institution: "Programming Hero | IBM | Coursera",
-      year: "Late 2025 - Present",
-      gpa: "Next.js Focus",
-      description: "Executing a rigorous continuous-shipping protocol to master the modern web ecosystem. Initiated with fundamental architecture, escalated into an intensive Full-Stack Bootcamp, and currently engineering server-side rendered, production-grade applications.",
-      tech: ["Next.js", "React", "Full-Stack Systems"],
-      links: [
-        { name: "Verify React Architecture Credential", url: "https://coursera.org/share/f9ed374f6ba8ccea134879e0d94002dc" },
-        { name: "Verify Web Fundamentals Credential", url: "https://www.credly.com/badges/de1ccc87-723e-4f38-a7f1-ba2e8d0331ed" }
-      ],
-      align: "right"
-    }
   ];
 
   return (
@@ -181,7 +166,7 @@ export default function Education() {
                           <div className="flex flex-wrap items-center gap-2 sm:gap-3 text-[10px] sm:text-xs font-semibold tracking-widest uppercase text-neutral-500">
                             <span className="whitespace-nowrap">{item.year}</span>
                             <span className="hidden sm:block w-1 h-1 rounded-full bg-neutral-700"></span>
-                            <span className={`whitespace-nowrap ${item.gpa === "5.00" || item.gpa === "Next.js Focus" ? "text-emerald-500" : ""}`}>
+                            <span className={`whitespace-nowrap ${item.gpa === "5.00" ? "text-emerald-500" : ""}`}>
                               {item.gpa.includes("Focus") || item.gpa === "Active" ? item.gpa : `GPA: ${item.gpa}`}
                             </span>
                           </div>
