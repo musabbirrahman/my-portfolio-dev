@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import { projectsData } from "../data/projectsData";
 
 export default function Projects() {
@@ -44,11 +45,17 @@ export default function Projects() {
               {/* Abstract Visual Top Area (Replaces boring terminal headers) */}
               <div className="h-48 w-full bg-[#0a0a0a] border-b border-white/[0.05] relative overflow-hidden flex items-center justify-center">
                 {/* Subtle gradient orb inside the image area that glows on hover */}
+                {project.image ? (
+                  <Image src={project.image} alt={`${project.title} preview`} fill className="object-cover object-top" />
+                ) : (
+                  <>
                 <div className="absolute inset-0 opacity-20 group-hover:opacity-40 transition-opacity duration-500 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-neutral-500 via-transparent to-transparent blur-xl"></div>
-                
+                    
                 <div className="w-16 h-16 rounded-2xl bg-white/[0.05] flex items-center justify-center text-white text-xl font-bold border border-white/[0.1] z-10 group-hover:scale-110 transition-transform duration-500 shadow-lg">
                   {project.title.charAt(0)}
                 </div>
+                  </>
+                )}
               </div>
 
               <div className="p-8 flex-grow flex flex-col">
