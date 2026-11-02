@@ -30,6 +30,7 @@ export const projectsData = [
     ],
     tech: ["Vite", "Supabase", "Vercel", "AI-Assisted Development"],
     liveLink: "https://golponeer.com",
+    image: "/golponeer-desktop.jpg",
     githubLink: "https://github.com/musabbirrahman/golpoghor",
     status: "DEPLOYED",
   },

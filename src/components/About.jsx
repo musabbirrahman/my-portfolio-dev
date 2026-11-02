@@ -20,10 +20,10 @@ export default function About() {
           className="mb-16 md:mb-24 text-center max-w-3xl mx-auto"
         >
           <h2 className="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white to-neutral-500 tracking-tight leading-tight mb-6">
-            The Architecture of <br /> the Engineer.
+            How I work.
           </h2>
           <p className="text-base sm:text-lg text-neutral-400 leading-relaxed font-light">
-            Software engineering is more than just writing syntax; it is about building scalable systems, continuous learning, and strategic problem-solving. Here is the data on who I am, how I operate, and where I am going.
+            I work by message only, no calls or meetings. You send the brief, I build, I test on phone, tablet, and desktop, and I revise until it works.
           </p>
         </motion.div>
 
@@ -60,16 +60,16 @@ export default function About() {
                  <svg width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" className="text-white"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
               </div>
               
-              <span className="text-xs font-semibold uppercase tracking-widest text-neutral-500 mb-4 block">Personal Architecture</span>
+              <span className="text-xs font-semibold uppercase tracking-widest text-neutral-500 mb-4 block">How I work</span>
               <h3 className="text-xl md:text-2xl font-bold text-neutral-200 mb-4 leading-snug">
-                Bridging complex logic with premium, scalable interfaces.
+                Clean websites, tested before delivery.
               </h3>
               <div className="space-y-3 text-neutral-400 text-xs md:text-sm leading-relaxed font-light">
                 <p>
-                  I am a Frontend Software Engineer driven by a philosophy of continuous shipping. I don't just consume tutorials; I architect, build, and deploy production-grade applications.
+                  I build landing pages and fix layout problems using AI-assisted development, and I manually test every delivery on phone, tablet, and desktop.
                 </p>
                 <p>
-                  My expertise lies in the modern JavaScript ecosystem. I specialize in taking dense, complex data requirements and translating them into fluid, responsive, and highly performant user interfaces.
+                  For GolpoNeer, I directed the build, tested every release, and operate the live site. That is how I work for clients too: I direct, I test, I deliver, and I revise.
                 </p>
               </div>
             </div>
@@ -118,7 +118,7 @@ export default function About() {
             </div>
           </motion.div>
 
-          {/* Box 4: Strategic Off-Screen Data */}
+          {/* Box 4: Working with me */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -130,15 +130,15 @@ export default function About() {
             <div className="space-y-3">
               <div className="flex items-start gap-3">
                 <span className="text-neutral-600 mt-0.5">▹</span>
-                <p className="text-xs text-neutral-400 font-light leading-relaxed">Analyzing premier Anime & Manga narratives for complex plot structures.</p>
+                <p className="text-xs text-neutral-400 font-light leading-relaxed">Message only, no calls or meetings.</p>
               </div>
               <div className="flex items-start gap-3">
                 <span className="text-neutral-600 mt-0.5">▹</span>
-                <p className="text-xs text-neutral-400 font-light leading-relaxed">Studying the technical engineering specs of global stealth bomber fleets (B-2, Tu-160).</p>
+                <p className="text-xs text-neutral-400 font-light leading-relaxed">Build, then test on phone, tablet, and desktop.</p>
               </div>
               <div className="flex items-start gap-3">
                 <span className="text-neutral-600 mt-0.5">▹</span>
-                <p className="text-xs text-neutral-400 font-light leading-relaxed">Resetting logic loops via strategic gaming (FC Mobile) and football tactics.</p>
+                <p className="text-xs text-neutral-400 font-light leading-relaxed">Revisions until the layout works on your device.</p>
               </div>
             </div>
           </motion.div>
@@ -159,7 +159,7 @@ export default function About() {
               <div>
                 <span className="text-xs font-semibold uppercase tracking-widest text-white mb-4 block">Core Architecture</span>
                 <div className="flex flex-wrap gap-2">
-                  {['JavaScript (ES6+)', 'React.js', 'Next.js 14 App Router', 'HTML5 & CSS3'].map((skill, i) => (
+                  {['HTML5 & CSS3', 'JavaScript (ES6+)', 'Responsive Design', 'AI-Assisted Development'].map((skill, i) => (
                     <span key={i} className="px-3 py-1.5 rounded-lg bg-white/[0.03] border border-white/[0.05] text-xs font-medium text-neutral-300">{skill}</span>
                   ))}
                 </div>
@@ -168,7 +168,7 @@ export default function About() {
               <div>
                 <span className="text-xs font-semibold uppercase tracking-widest text-white mb-4 block">Styling & Motion</span>
                 <div className="flex flex-wrap gap-2">
-                  {['Tailwind CSS', 'Framer Motion', 'CSS Grid & Flexbox', 'Responsive UI'].map((skill, i) => (
+                  {['Tailwind CSS', 'CSS Grid & Flexbox', 'Responsive UI', 'Manual Testing'].map((skill, i) => (
                     <span key={i} className="px-3 py-1.5 rounded-lg bg-white/[0.03] border border-white/[0.05] text-xs font-medium text-neutral-300">{skill}</span>
                   ))}
                 </div>
@@ -177,7 +177,7 @@ export default function About() {
               <div>
                 <span className="text-xs font-semibold uppercase tracking-widest text-white mb-4 block">Tools & Deployment</span>
                 <div className="flex flex-wrap gap-2">
-                  {['Git & GitHub', 'Vercel Edge', 'RESTful APIs', 'DOM Manipulation'].map((skill, i) => (
+                  {['Git & GitHub', 'Vercel Deployment', 'Contact & Forms', 'Mobile Testing'].map((skill, i) => (
                     <span key={i} className="px-3 py-1.5 rounded-lg bg-white/[0.03] border border-white/[0.05] text-xs font-medium text-neutral-300">{skill}</span>
                   ))}
                 </div>
