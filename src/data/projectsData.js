@@ -4,16 +4,17 @@ export const projectsData = [
     slug: "landing-page-demo",
     title: "Landing Page Demo",
     shortDescription:
-      "A clean, mobile-first landing page demo for a local business. In progress, this is the service I sell.",
+      "A clean, mobile-first landing page demo for a fictional local bakery. This is the service I sell.",
     longDescription:
-      "This demo is in progress. When finished, it will show a complete landing page: a clear hero, services, and a contact section, tested on phone, tablet, and desktop. It is listed here now so the portfolio order is honest about what is ready and what is still being built.",
+      "A complete demo landing page for a fictional bakery: a clear hero, menu, why-us, visit, and contact sections. It is labelled as a demo everywhere, with example prices and hours, and a demo form that sends nothing.",
     features: [
-      "In progress: hero, services, and contact sections",
-      "Planned: mobile-first layout, no horizontal scroll",
-      "Planned: phone, tablet, and desktop testing before delivery",
+      "Hero, menu, visit, and contact sections",
+      "Mobile-first layout, no horizontal scroll",
+      "Demo contact form that sends and stores nothing",
     ],
     tech: ["HTML5", "CSS3", "JavaScript"],
-    status: "IN_PROGRESS",
+    liveLink: "/demos/landing",
+    status: "DEPLOYED",
   },
   {
     id: "PRJ-02",
@@ -39,15 +40,16 @@ export const projectsData = [
     slug: "layout-fix-demo",
     title: "Layout Fix Demo",
     shortDescription:
-      "A before-and-after layout fix demo. In progress, this shows the bug-fix service I sell.",
+      "A before-and-after layout fix demo, with the same cards shown broken, then fixed. This shows the bug-fix service I sell.",
     longDescription:
-      "This demo is in progress. When finished, it will show a broken mobile layout next to the fixed version, with the exact problem, the fix, and phone, tablet, and desktop checks. It is listed here now so the portfolio order is honest about what is ready and what is still being built.",
+      "A before-and-after demo in a 360px phone frame, with a toggle. The Before version is intentionally broken: a fixed 900px container, nowrap titles, and a row that never stacks. The After version fixes all three, with the changes explained in plain terms.",
     features: [
-      "In progress: a broken mobile layout example",
-      "Planned: before-and-after screenshots at phone width",
-      "Planned: phone, tablet, and desktop checks after the fix",
+      "Before and After toggle in a 360px phone frame",
+      "Three named bugs: fixed width, nowrap titles, non-stacking row",
+      "Fixed version checked for no horizontal scroll at phone width",
     ],
     tech: ["HTML5", "CSS3", "Responsive Design"],
-    status: "IN_PROGRESS",
+    liveLink: "/demos/layout-fix",
+    status: "DEPLOYED",
   },
 ];
