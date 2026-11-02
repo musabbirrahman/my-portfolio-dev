@@ -1,53 +1,52 @@
 export const projectsData = [
   {
-    id: "SYS-01",
-    slug: "payoo-mobile-bank", // This becomes the URL: /projects/payoo-mobile-bank
-    title: "Payoo Mobile Bank",
-    shortDescription: "Responsive mobile banking interface engineered with modern UI/UX principles.",
-    longDescription: "A comprehensive frontend architecture for a modern mobile banking application. The primary objective was to translate complex financial data into a clean, intuitive, and highly responsive user interface. Built entirely with vanilla JavaScript and Tailwind CSS to ensure zero-dependency performance and rapid DOM manipulation.",
+    id: "PRJ-01",
+    slug: "landing-page-demo",
+    title: "Landing Page Demo",
+    shortDescription:
+      "A clean, mobile-first landing page demo for a local business. In progress, this is the service I sell.",
+    longDescription:
+      "This demo is in progress. When finished, it will show a complete landing page: a clear hero, services, and a contact section, tested on phone, tablet, and desktop. It is listed here now so the portfolio order is honest about what is ready and what is still being built.",
     features: [
-      "Secure authentication UI flow",
-      "Dynamic balance and transaction state management",
-      "Responsive mobile-first layout architecture",
-      "Optimized DOM manipulation without external libraries"
+      "In progress: hero, services, and contact sections",
+      "Planned: mobile-first layout, no horizontal scroll",
+      "Planned: phone, tablet, and desktop testing before delivery",
     ],
-    tech: ["JS_ES6", "Tailwind CSS", "HTML5"],
-    liveLink: "#",
-    githubLink: "https://github.com/musabbirrahman/payoo-mobile-bank",
-    status: "DEPLOYED"
+    tech: ["HTML5", "CSS3", "JavaScript"],
+    status: "IN_PROGRESS",
   },
   {
-    id: "SYS-02",
-    slug: "job-tracker-os",
-    title: "Job Tracker OS",
-    shortDescription: "Dynamic web application designed to track application states and streamline workflow processes.",
-    longDescription: "An internal tool engineered to manage and track job applications across various platforms. The system utilizes local storage for data persistence and features a dynamic UI that updates application statuses (e.g., 'Applied', 'Interviewing', 'Rejected') in real-time.",
+    id: "PRJ-02",
+    slug: "golponeer",
+    title: "GolpoNeer",
+    shortDescription:
+      "A live Bangla and English story platform I run, built with AI-assisted development. I directed, tested, published, and operate it.",
+    longDescription:
+      "GolpoNeer is a live story platform for reading and publishing stories in Bangla and English. It was built with AI-assisted development: I directed the build, tested every release, handled publishing and SEO, and operate the live site. It is not presented as hand-written code.",
     features: [
-      "Real-time data filtering and sorting",
-      "Local storage data persistence",
-      "Interactive status progression boards",
-      "Clean, distraction-free typography"
+      "Live at golponeer.com with published stories and chapters",
+      "Bangla and English reading, with author and genre pages",
+      "Search, discover, and keepsake features, tested on phone and desktop",
     ],
-    tech: ["JS_Vanilla", "CSS3", "Local_Storage"],
-    liveLink: "#",
-    githubLink: "#",
-    status: "ACTIVE"
+    tech: ["Vite", "Supabase", "Vercel", "AI-Assisted Development"],
+    liveLink: "https://golponeer.com",
+    githubLink: "https://github.com/musabbirrahman/golpoghor",
+    status: "DEPLOYED",
   },
   {
-    id: "SYS-03",
-    slug: "e-plant-commerce",
-    title: "E-Plant Commerce",
-    shortDescription: "Interactive e-commerce frontend featuring advanced layout architectures and active state management.",
-    longDescription: "A scalable React-based e-commerce storefront dedicated to botanical products. This project focuses on complex state management (handling shopping carts, user sessions, and inventory display) while maintaining a seamless, high-performance user experience.",
+    id: "PRJ-03",
+    slug: "layout-fix-demo",
+    title: "Layout Fix Demo",
+    shortDescription:
+      "A before-and-after layout fix demo. In progress, this shows the bug-fix service I sell.",
+    longDescription:
+      "This demo is in progress. When finished, it will show a broken mobile layout next to the fixed version, with the exact problem, the fix, and phone, tablet, and desktop checks. It is listed here now so the portfolio order is honest about what is ready and what is still being built.",
     features: [
-      "Global state management for cart functionality",
-      "Dynamic product routing and rendering",
-      "Framer Motion layout transitions",
-      "Responsive grid and flexbox architectures"
+      "In progress: a broken mobile layout example",
+      "Planned: before-and-after screenshots at phone width",
+      "Planned: phone, tablet, and desktop checks after the fix",
     ],
-    tech: ["React", "State_Mgmt", "Tailwind CSS"],
-    liveLink: "#",
-    githubLink: "#",
-    status: "IN_DEV"
-  }
+    tech: ["HTML5", "CSS3", "Responsive Design"],
+    status: "IN_PROGRESS",
+  },
 ];
