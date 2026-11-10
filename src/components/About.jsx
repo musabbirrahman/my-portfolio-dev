@@ -180,6 +180,35 @@ export default function About() {
             </div>
           </motion.div>
 
+          {/* Box 6: Tested on 12 screen sizes (Spans all 4 columns) */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.6 }}
+            className="md:col-span-4 p-8 md:p-10 rounded-3xl bg-white/[0.02] border border-white/[0.05] hover:bg-white/[0.03] transition-colors"
+          >
+            <span className="text-xs font-semibold uppercase tracking-widest text-neutral-500 mb-2 block">Tested on 12 screen sizes</span>
+            <p className="text-neutral-400 text-sm font-light leading-relaxed mb-6 max-w-2xl">
+              Every site I deliver is checked on all twelve widths — phone, tablet, and desktop — before it ships. No sideways scroll, no cut-off text, no buttons too small to tap.
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+              {[
+                { label: "Phone", widths: ["320", "360", "390", "430"] },
+                { label: "Tablet", widths: ["600", "768", "820", "834"] },
+                { label: "Desktop", widths: ["1024", "1280", "1440", "1920"] },
+              ].map((group) => (
+                <div key={group.label}>
+                  <span className="text-xs font-semibold uppercase tracking-widest text-white mb-3 block">{group.label}</span>
+                  <div className="flex flex-wrap gap-2">
+                    {group.widths.map((w) => (
+                      <span key={w} className="px-3 py-1.5 rounded-lg bg-[#050505] border border-white/[0.05] text-xs font-mono font-medium text-neutral-300">{w}px</span>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+
         </div>
       </div>
     </section>
