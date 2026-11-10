@@ -97,10 +97,11 @@ export default function BeforeAfterSlider() {
         {/* Slider — After is the base; Before is clipped to the left of the handle */}
         <div
           ref={trackRef}
-          className="relative w-[360px] max-w-full mx-auto mt-12 select-none touch-none"
+          className="relative w-[360px] max-w-full mx-auto mt-12 select-none touch-pan-y"
           onPointerDown={onPointerDown}
           onPointerMove={onPointerMove}
           onPointerUp={onPointerUp}
+          onPointerCancel={onPointerUp}
         >
           <AfterPreview />
           <div

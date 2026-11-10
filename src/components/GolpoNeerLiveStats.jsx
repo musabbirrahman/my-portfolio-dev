@@ -83,7 +83,7 @@ export default function GolpoNeerLiveStats() {
           The story platform I run, counted right now — not a screenshot, not a claim. These numbers update every time this page loads.
         </p>
 
-        <div className="mt-10 grid grid-cols-3 gap-4 md:gap-8 max-w-3xl mx-auto">
+        <div className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 md:gap-8 max-w-3xl mx-auto">
           {items.map((item) => (
             <div key={item.label} className="rounded-3xl bg-white/[0.02] border border-white/[0.05] px-4 py-6 md:py-8 text-center">
               <p className="text-3xl md:text-5xl font-black text-white tracking-tight">
