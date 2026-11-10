@@ -1,5 +1,6 @@
 import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
+import GolpoNeerBanner from "../components/GolpoNeerBanner";
 import SkillsMarquee from "../components/SkillsMarquee";
 import Education from "../components/Education"; // <-- Add this import
 import Projects from "../components/Projects";
@@ -14,6 +15,7 @@ export default function Home() {
     <main>
       <Navbar />
       <Hero />
+      <GolpoNeerBanner />
       <SkillsMarquee />
       <Education /> {/* <-- The Education section goes here! */}
       <Projects />
