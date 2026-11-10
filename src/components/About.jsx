@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export default function About() {
   return (
-    <section id="about" className="py-24 md:py-40 bg-[#050505] px-4 sm:px-6 relative overflow-hidden border-t border-white/[0.02]">
+    <section id="about" className="py-16 md:py-24 bg-[#0a0a0a] px-4 sm:px-6 relative overflow-hidden border-t border-white/[0.06]">
       
       {/* Deep Ambient Background */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-white/[0.02] rounded-full blur-[150px] pointer-events-none"></div>
@@ -14,8 +14,7 @@ export default function About() {
         {/* Expanded Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="mb-16 md:mb-24 text-center max-w-3xl mx-auto"
         >
@@ -34,8 +33,7 @@ export default function About() {
           {/* Box 1: The Deep Bio & Portrait (Spans 2 cols, 2 rows on desktop) */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
             className="md:col-span-2 md:row-span-2 rounded-3xl bg-[#0a0a0a] border border-white/[0.05] relative overflow-hidden group flex flex-col sm:flex-row"
           >
@@ -78,8 +76,7 @@ export default function About() {
           {/* Box 2: Academic Trajectory */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
             className="md:col-span-2 p-8 rounded-3xl bg-white/[0.02] border border-white/[0.05] hover:bg-white/[0.03] transition-colors relative overflow-hidden"
           >
@@ -103,8 +100,7 @@ export default function About() {
           {/* Box 3: Operational Base */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
             className="p-8 rounded-3xl bg-white/[0.02] border border-white/[0.05] hover:bg-white/[0.03] transition-colors flex flex-col justify-between"
           >
@@ -121,8 +117,7 @@ export default function About() {
           {/* Box 4: Working with me */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
             className="p-8 rounded-3xl bg-white/[0.02] border border-white/[0.05] hover:bg-white/[0.03] transition-colors"
           >
@@ -146,8 +141,7 @@ export default function About() {
           {/* Box 5: The Structured Toolbelt (Spans all 4 columns) */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.5 }}
             className="md:col-span-4 p-8 md:p-10 rounded-3xl bg-[#0a0a0a] border border-white/[0.05] relative overflow-hidden"
           >

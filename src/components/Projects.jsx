@@ -6,14 +6,13 @@ import { projectsData } from "../data/projectsData";
 
 export default function Projects() {
   return (
-    <section id="projects" className="py-24 md:py-40 bg-[#050505] px-6 relative z-10 border-t border-white/[0.02]">
+    <section id="projects" className="py-16 md:py-24 bg-[#050505] px-6 relative z-10 border-t border-white/[0.06]">
       <div className="max-w-6xl mx-auto">
         
         {/* Premium Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="mb-16 md:mb-24 flex flex-col md:flex-row md:items-end justify-between gap-6"
         >
@@ -31,14 +30,13 @@ export default function Projects() {
           </Link>
         </motion.div>
 
-        {/* Premium Glass Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        {/* Premium Glass Grid — 2 columns on large screens so 4 projects sit 2+2, not 3+1 */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-6 md:gap-8">
           {projectsData.map((project, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
               className="group flex flex-col bg-white/[0.02] rounded-3xl overflow-hidden border border-white/[0.05] hover:border-white/[0.1] hover:bg-white/[0.03] transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl hover:shadow-black/50"
             >

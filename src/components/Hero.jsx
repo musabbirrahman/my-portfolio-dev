@@ -90,8 +90,7 @@ export default function Hero() {
 
   return (
 
-    <section id="hero" className="min-h-screen bg-[#050505] text-white flex flex-col justify-center items-center relative px-4 sm:px-6 overflow-hidden pt-32 
-pb-16">
+    <section id="hero" className="bg-[#050505] text-white flex flex-col justify-center items-center relative px-4 sm:px-6 overflow-hidden pt-32 pb-24">
 
       
 

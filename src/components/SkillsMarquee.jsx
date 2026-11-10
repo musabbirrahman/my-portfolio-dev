@@ -37,7 +37,7 @@ export default function SkillsMarquee() {
 
   return (
 
-    <section className="py-16 bg-[#050505] border-y border-white/[0.02] relative overflow-hidden flex flex-col gap-6">
+    <section className="py-16 bg-[#050505] border-y border-white/[0.06] relative overflow-hidden flex flex-col gap-6">
 
       
 

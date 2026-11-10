@@ -30,7 +30,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-24 md:py-40 bg-[#050505] px-4 sm:px-6 relative overflow-hidden border-t border-white/[0.02]">
+    <section id="contact" className="py-16 md:py-24 bg-[#050505] px-4 sm:px-6 relative overflow-hidden border-t border-white/[0.06]">
       
       {/* Subtle Ambient Glow */}
       <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[150px] pointer-events-none opacity-40"></div>
@@ -40,8 +40,7 @@ export default function Contact() {
         {/* Premium Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="text-center mb-16 md:mb-24 space-y-6"
         >
@@ -59,8 +58,7 @@ export default function Contact() {
           {/* Left Pane: Direct Details */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="flex flex-col space-y-8"
           >
@@ -121,8 +119,7 @@ export default function Contact() {
           {/* Right Pane: Web3Forms Integrated Serverless Form */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
             <form onSubmit={onSubmit} className="p-8 md:p-10 rounded-3xl bg-white/[0.02] border border-white/[0.05] shadow-2xl flex flex-col gap-6">

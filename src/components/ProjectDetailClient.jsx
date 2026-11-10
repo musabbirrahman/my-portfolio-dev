@@ -52,6 +52,23 @@ export default function ProjectDetailClient({ project }) {
           </p>
         </motion.div>
 
+        {/* The idea — why this project exists (only when the project has one) */}
+        {project.idea && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+            className="mb-16 md:mb-20 p-8 rounded-3xl bg-white/[0.02] border border-white/[0.05]"
+          >
+            <h3 className="text-xs font-semibold uppercase tracking-widest text-neutral-500 mb-4">
+              The idea
+            </h3>
+            <p className="text-lg text-neutral-300 leading-relaxed font-light">
+              {project.idea}
+            </p>
+          </motion.div>
+        )}
+
         {/* Massive Image / Architecture Visual */}
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
@@ -74,6 +91,30 @@ export default function ProjectDetailClient({ project }) {
              </div>
            )}
         </motion.div>
+
+        {/* Screenshots — captioned shots of the live site (only when the project has them) */}
+        {project.screenshots && project.screenshots.length > 0 && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+            className="mb-20"
+          >
+            <h3 className="text-2xl font-bold text-neutral-200 tracking-tight mb-6">Screenshots</h3>
+            <div className="grid sm:grid-cols-2 gap-6">
+              {project.screenshots.map((shot, idx) => (
+                <figure key={idx} className="rounded-3xl overflow-hidden border border-white/[0.05] bg-white/[0.02]">
+                  <div className="relative aspect-video w-full overflow-hidden">
+                    <Image src={shot.src} alt={shot.caption} fill className="object-cover object-top" />
+                  </div>
+                  <figcaption className="px-5 py-4 text-sm text-neutral-400 font-light leading-relaxed">
+                    {shot.caption}
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+          </motion.div>
+        )}
 
         {/* Two-Column Deep Dive */}
         <div className="grid lg:grid-cols-[1fr_320px] gap-16 md:gap-24 items-start">

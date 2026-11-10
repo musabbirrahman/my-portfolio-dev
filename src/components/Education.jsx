@@ -49,7 +49,7 @@ export default function Education() {
   ];
 
   return (
-    <section id="education" className="py-24 md:py-40 bg-[#050505] px-4 sm:px-6 relative overflow-hidden border-t border-white/[0.02]">
+    <section id="education" className="py-16 md:py-24 bg-[#0a0a0a] px-4 sm:px-6 relative overflow-hidden border-t border-white/[0.06]">
       
       {/* Subtle Ambient Depth Glow */}
       <div className="absolute top-1/2 left-1/4 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[120px] pointer-events-none opacity-40"></div>
@@ -59,8 +59,7 @@ export default function Education() {
         {/* Premium Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="text-center mb-20 md:mb-40 space-y-6"
         >
@@ -103,8 +102,7 @@ export default function Education() {
                     {/* The Bento Card */}
                     <motion.div
                       initial={{ opacity: 0, x: isLeft ? -30 : 30, y: 20 }}
-                      whileInView={{ opacity: 1, x: 0, y: 0 }}
-                      viewport={{ once: true, margin: "-100px" }}
+                      animate={{ opacity: 1, x: 0, y: 0 }}
                       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                       className={`w-full md:w-[calc(50%-2.5rem)] relative z-10 pl-[56px] sm:pl-[72px] md:pl-0`}
                     >
