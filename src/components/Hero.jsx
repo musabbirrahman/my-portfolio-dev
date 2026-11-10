@@ -206,14 +206,16 @@ hover:bg-white/[0.06] transition-colors">
                 className="w-full h-auto block"
               />
             </div>
-            {/* Phone frame, overlapping the desktop frame */}
+            {/* Phone frame, overlapping the desktop frame — a REAL mobile
+                render of the same page (not the desktop shot cropped),
+                so the phone shows the page as it actually looks on a phone. */}
             <div className="absolute -bottom-6 right-2 sm:right-4 w-[110px] sm:w-[140px] lg:w-[150px] rounded-[1.5rem] border border-white/15 bg-[#050505] p-1.5 shadow-2xl">
               <div className="rounded-[1.1rem] overflow-hidden aspect-[9/16] bg-white">
                 <Image
-                  src="/landing-demo.jpg"
+                  src="/landing-demo-mobile.jpg"
                   alt="Landing page demo on phone"
-                  width={1280}
-                  height={720}
+                  width={390}
+                  height={844}
                   className="w-full h-full object-cover object-top"
                 />
               </div>
