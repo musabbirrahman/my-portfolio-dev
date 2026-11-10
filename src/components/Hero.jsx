@@ -90,7 +90,7 @@ export default function Hero() {
 
   return (
 
-    <section id="hero" className="bg-[#050505] text-white flex flex-col justify-center items-center relative px-4 sm:px-6 overflow-hidden pt-32 pb-24">
+    <section id="hero" className="bg-[#050505] text-white flex flex-col justify-center items-center relative px-4 sm:px-6 overflow-hidden pt-28 pb-16">
 
       
 
@@ -186,7 +186,43 @@ hover:bg-white/[0.06] transition-colors">
           </a>
         </motion.div>
 
+        {/* Hero visual — GolpoNeer, live in a browser frame. The flagship
+            project, shown as it actually looks, so the hero ends on proof
+            instead of empty space. */}
+        <motion.div variants={FADE_UP_ANIMATION_VARIANTS} className="pt-12">
+          <a
+            href="https://golponeer.com"
+            target="_blank"
+            rel="noreferrer"
+            className="block max-w-2xl mx-auto rounded-2xl border border-white/10 bg-white/[0.03] overflow-hidden shadow-[0_0_60px_rgba(255,255,255,0.06)] hover:border-white/20 transition-colors"
+          >
+            <span className="flex items-center gap-2 px-4 py-3 border-b border-white/[0.06] bg-white/[0.02]">
+              <span className="h-2.5 w-2.5 rounded-full bg-red-400/80" />
+              <span className="h-2.5 w-2.5 rounded-full bg-amber-400/80" />
+              <span className="h-2.5 w-2.5 rounded-full bg-emerald-400/80" />
+              <span className="ml-2 flex-1 max-w-[220px] mx-auto rounded-full bg-white/[0.05] px-3 py-1 text-[11px] text-neutral-400 text-center truncate">
+                golponeer.com
+              </span>
+            </span>
+            <Image
+              src="/golponeer-desktop.jpg"
+              alt="GolpoNeer homepage"
+              width={1600}
+              height={716}
+              className="w-full h-auto block"
+            />
+          </a>
+          <p className="mt-3 text-xs text-neutral-500">
+            GolpoNeer — the story platform I built and run. Click to visit it live.
+          </p>
+        </motion.div>
+
       </motion.div>
+
+      {/* Scroll cue */}
+      <a href="#projects" aria-label="Scroll to selected work" className="relative z-10 mt-12 text-neutral-500 hover:text-neutral-300 transition-colors">
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+      </a>
     </section>
   );
 }
