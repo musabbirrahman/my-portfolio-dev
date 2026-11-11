@@ -61,9 +61,12 @@ export default function Footer() {
           {/* Column 3: Fast Navigation */}
           <div className="flex flex-col items-center md:items-end space-y-2">
             <span className="text-[10px] font-bold uppercase tracking-widest text-neutral-500">Network</span>
-            <div className="flex items-center gap-6">
+            <div className="flex flex-wrap items-center justify-center gap-6 md:justify-end">
               <a href="https://github.com/musabbirrahman" target="_blank" rel="noreferrer" className="text-sm font-medium text-neutral-400 hover:text-white transition-colors">GitHub</a>
               <a href="https://linkedin.com/in/musabbirrahman" target="_blank" rel="noreferrer" className="text-sm font-medium text-neutral-400 hover:text-white transition-colors">LinkedIn</a>
+              <a href="https://facebook.com/dev.musabbirrahman" target="_blank" rel="noreferrer" className="text-sm font-medium text-neutral-400 hover:text-white transition-colors">Facebook</a>
+              <a href="https://x.com/MusabbirRahman0" target="_blank" rel="noreferrer" className="text-sm font-medium text-neutral-400 hover:text-white transition-colors">X</a>
+              <a href="https://medium.com/@musabbirrahman" target="_blank" rel="noreferrer" className="text-sm font-medium text-neutral-400 hover:text-white transition-colors">Medium</a>
               {/* Upgraded Back to Top Trigger */}
               <button 
                 onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}

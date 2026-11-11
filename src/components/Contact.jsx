@@ -109,10 +109,16 @@ export default function Contact() {
             </div>
 
             {/* Social Links (Optional, but looks great) */}
-            <div className="flex items-center gap-4 pl-2">
+            <div className="flex flex-wrap items-center gap-4 pl-2">
               <a href="https://github.com/musabbirrahman" target="_blank" rel="noreferrer" className="text-neutral-500 hover:text-white transition-colors text-sm font-medium border-b border-transparent hover:border-white pb-0.5">GitHub</a>
               <span className="w-1 h-1 rounded-full bg-neutral-800"></span>
               <a href="https://linkedin.com/in/musabbirrahman" target="_blank" rel="noreferrer" className="text-neutral-500 hover:text-white transition-colors text-sm font-medium border-b border-transparent hover:border-white pb-0.5">LinkedIn</a>
+              <span className="w-1 h-1 rounded-full bg-neutral-800"></span>
+              <a href="https://facebook.com/dev.musabbirrahman" target="_blank" rel="noreferrer" className="text-neutral-500 hover:text-white transition-colors text-sm font-medium border-b border-transparent hover:border-white pb-0.5">Facebook</a>
+              <span className="w-1 h-1 rounded-full bg-neutral-800"></span>
+              <a href="https://x.com/MusabbirRahman0" target="_blank" rel="noreferrer" className="text-neutral-500 hover:text-white transition-colors text-sm font-medium border-b border-transparent hover:border-white pb-0.5">X</a>
+              <span className="w-1 h-1 rounded-full bg-neutral-800"></span>
+              <a href="https://medium.com/@musabbirrahman" target="_blank" rel="noreferrer" className="text-neutral-500 hover:text-white transition-colors text-sm font-medium border-b border-transparent hover:border-white pb-0.5">Medium</a>
             </div>
           </motion.div>
 
