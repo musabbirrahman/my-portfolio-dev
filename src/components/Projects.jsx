@@ -5,6 +5,10 @@ import Image from "next/image";
 import { projectsData } from "../data/projectsData";
 
 export default function Projects() {
+  // Only cards without hideFromGrid show here — the two old demo entries
+  // stay in projectsData so their detail pages keep working, but the
+  // grid shows the reordered three: GolpoNeer, Sweet Cravings, Lab.
+  const visibleProjects = projectsData.filter((p) => !p.hideFromGrid);
   return (
     <section id="projects" className="py-16 md:py-24 bg-[#050505] px-6 relative z-10 border-t border-white/[0.06]">
       <div className="max-w-6xl mx-auto">
@@ -21,7 +25,7 @@ export default function Projects() {
               Selected Work
             </h2>
             <p className="mt-4 text-neutral-400 text-lg max-w-xl font-light leading-relaxed">
-              Work in the order closest to what I sell: a landing page demo, a live product I run, and a layout fix demo.
+              Real products first — the platform I run and the store I built — then the demos that show the craft.
             </p>
           </div>
           <Link href="https://github.com/musabbirrahman" target="_blank" className="text-neutral-400 hover:text-white font-medium flex items-center gap-2 transition-colors">
@@ -30,18 +34,19 @@ export default function Projects() {
           </Link>
         </motion.div>
 
-        {/* Premium Glass Grid — 2 columns on large screens so 4 projects sit 2+2, not 3+1 */}
+        {/* Premium Glass Grid — 2 columns; the first card (GolpoNeer) is
+            the flagship, so it spans both columns with a taller image. */}
         <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-6 md:gap-8">
-          {projectsData.map((project, index) => (
+          {visibleProjects.map((project, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="group flex flex-col bg-white/[0.02] rounded-3xl overflow-hidden border border-white/[0.05] hover:border-white/[0.1] hover:bg-white/[0.03] transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl hover:shadow-black/50"
+              className={`group flex flex-col bg-white/[0.02] rounded-3xl overflow-hidden border border-white/[0.05] hover:border-white/[0.1] hover:bg-white/[0.03] transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl hover:shadow-black/50${index === 0 ? " md:col-span-2" : ""}`}
             >
               {/* Abstract Visual Top Area (Replaces boring terminal headers) */}
-              <div className="h-48 w-full bg-[#0a0a0a] border-b border-white/[0.05] relative overflow-hidden flex items-center justify-center">
+              <div className={`${index === 0 ? "h-64 md:h-80" : "h-48"} w-full bg-[#0a0a0a] border-b border-white/[0.05] relative overflow-hidden flex items-center justify-center`}>
                 {/* Subtle gradient orb inside the image area that glows on hover */}
                 {project.image ? (
                   <Image src={project.image} alt={`${project.title} preview`} fill className="object-cover object-top" />
@@ -85,6 +90,17 @@ export default function Projects() {
                   ))}
                 </div>
                 
+                {/* Demo links — only the Lab card has two demos to try */}
+                {project.demoLinks && (
+                  <div className="flex flex-wrap gap-x-5 gap-y-2 mb-2">
+                    {project.demoLinks.map((demo) => (
+                      <Link key={demo.href} href={demo.href} className="text-sm font-medium text-neutral-300 hover:text-white underline underline-offset-4 decoration-white/20 hover:decoration-white/60 transition-colors">
+                        Try the {demo.label.toLowerCase()} →
+                      </Link>
+                    ))}
+                  </div>
+                )}
+
                 {/* High-Contrast Action Footer */}
                 <div className="flex gap-3 mt-auto pt-4 border-t border-white/[0.05]">
                   {project.githubLink && project.githubLink !== "#" && (

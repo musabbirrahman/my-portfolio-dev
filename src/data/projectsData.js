@@ -1,27 +1,14 @@
+/* Selected Work order (Step 2 reorder, 2026-11-13): real production
+ * systems first — GolpoNeer, then Sweet Cravings — then the demos,
+ * combined into one Responsive Lab card. The two old demo entries
+ * stay in this file with hideFromGrid: true so their detail pages
+ * (/projects/landing-page-demo, /projects/layout-fix-demo) keep
+ * working for anyone with the link; they just no longer appear
+ * as cards in the grid. Delete them only if the old URLs should
+ * go away too. */
 export const projectsData = [
   {
     id: "PRJ-01",
-    slug: "landing-page-demo",
-    title: "Landing Page Demo",
-    shortDescription:
-      "A clean, mobile-first landing page demo for a fictional local bakery. This is the service I sell.",
-    idea:
-      "A local shop does not need an app or a complicated site — it needs one clear page that says what it sells, what it costs, and how to order. This demo is that page: a fictional bakery in Jamalpur, built to show a real shop owner exactly what they would get before they pay for it.",
-    longDescription:
-      "A complete demo landing page for a fictional bakery: a clear hero, menu, why-us, visit, and contact sections. It is labelled as a demo everywhere, with example prices and hours, and a demo form that sends nothing. The point is to show the service, not to pretend the shop is real — a shop owner can look at it and picture their own menu and prices in the same layout.",
-    features: [
-      "Hero, menu filter, order builder, FAQ, visit, and contact",
-      "Order total in ৳, with a message draft, demo only",
-      "Mobile-first layout, no horizontal scroll",
-      "Clear demo labelling everywhere — prices and hours are examples",
-    ],
-    tech: ["HTML5", "CSS3", "JavaScript"],
-    liveLink: "/demos/landing",
-    image: "/landing-demo.jpg",
-    status: "DEPLOYED",
-  },
-  {
-    id: "PRJ-02",
     slug: "golponeer",
     title: "GolpoNeer",
     shortDescription:
@@ -49,28 +36,7 @@ export const projectsData = [
     status: "DEPLOYED",
   },
   {
-    id: "PRJ-03",
-    slug: "layout-fix-demo",
-    title: "Layout Fix Demo",
-    shortDescription:
-      "A before-and-after layout fix demo, with the same cards shown broken, then fixed. This shows the bug-fix service I sell.",
-    idea:
-      "Most layout bugs are invisible to the person who built the site — until a customer opens it on a phone and the page scrolls sideways or the text gets cut off. This demo shows the problem and the fix side by side, so a shop owner can see exactly what they are paying to have fixed.",
-    longDescription:
-      "A before-and-after demo in a 360px phone frame, with a toggle. The Before version is intentionally broken: a fixed 900px container, nowrap titles, and a row that never stacks. The After version fixes all three, with the changes explained in plain terms. It covers five named bugs and includes a code-diff view, so the fix is not a mystery — it is a visible, explainable change.",
-    features: [
-      "Before and After toggle in a 360px phone frame",
-      "Five named bugs, plus a code-diff view",
-      "Fixed version checked for no horizontal scroll at phone width",
-      "Each bug explained in plain terms — what was wrong, what changed",
-    ],
-    tech: ["HTML5", "CSS3", "Responsive Design"],
-    liveLink: "/demos/layout-fix",
-    image: "/layout-fix-demo.jpg",
-    status: "DEPLOYED",
-  },
-  {
-    id: "PRJ-04",
+    id: "PRJ-02",
     slug: "sweetcravings",
     title: "Sweet Cravings",
     shortDescription:
@@ -97,6 +63,81 @@ export const projectsData = [
       { src: "/sweet-cravings.jpg", caption: "Homepage — the hero and the signature caramel flan (৳400)" },
     ],
     githubLink: "https://github.com/musabbirrahman/sweetcravings",
+    status: "DEPLOYED",
+  },
+  {
+    id: "PRJ-03",
+    slug: "responsive-lab",
+    title: "Responsive Lab",
+    shortDescription:
+      "Two hands-on demos of the services I sell: a clean landing page for a local shop, and the same page's layout fixed — broken on the left, fixed on the right.",
+    idea:
+      "A shop owner should see what they are paying for before they pay. These two demos show the services side by side: one clear landing page for a local shop, and a before-and-after of the layout bugs that lose customers on phones — sideways scroll, cut-off titles, tiny buttons — fixed in plain view.",
+    longDescription:
+      "Two interactive demos of the services I sell. The landing page demo is a complete page for a fictional bakery in Jamalpur: hero, menu, order builder, FAQ, visit, and contact — labelled as a demo everywhere, with example prices and hours. The layout-fix demo shows the same bakery cards broken, then fixed: a fixed 900px container, nowrap titles, a row that never stacks, tiny buttons, and a stretched image box — five named bugs, with a code-diff view and a draggable before/after slider on the homepage. Both are mobile-first with no horizontal scroll, and both are labelled as demos, not real shops.",
+    features: [
+      "Complete landing page demo: hero, menu filter, order builder, FAQ, visit, contact",
+      "Order total in ৳, with a message draft, demo only",
+      "Before-and-after layout fix in a 360px phone frame, with a draggable slider",
+      "Five named bugs, plus a code-diff view",
+      "Fixed version checked for no horizontal scroll at phone width",
+      "Clear demo labelling everywhere — prices and hours are examples",
+    ],
+    tech: ["HTML5", "CSS3", "JavaScript", "Responsive Design"],
+    liveLink: "/demos/landing",
+    demoLinks: [
+      { label: "Landing demo", href: "/demos/landing" },
+      { label: "Layout-fix demo", href: "/demos/layout-fix" },
+    ],
+    image: "/landing-demo.jpg",
+    screenshots: [
+      { src: "/landing-demo.jpg", caption: "Landing page demo — the same page on desktop and phone" },
+      { src: "/layout-fix-demo.jpg", caption: "Layout-fix demo — the same cards, broken then fixed" },
+    ],
+    status: "DEPLOYED",
+  },
+  {
+    id: "PRJ-04",
+    slug: "landing-page-demo",
+    hideFromGrid: true,
+    title: "Landing Page Demo",
+    shortDescription:
+      "A clean, mobile-first landing page demo for a fictional local bakery. This is the service I sell.",
+    idea:
+      "A local shop does not need an app or a complicated site — it needs one clear page that says what it sells, what it costs, and how to order. This demo is that page: a fictional bakery in Jamalpur, built to show a real shop owner exactly what they would get before they pay for it.",
+    longDescription:
+      "A complete demo landing page for a fictional bakery: a clear hero, menu, why-us, visit, and contact sections. It is labelled as a demo everywhere, with example prices and hours, and a demo form that sends nothing. The point is to show the service, not to pretend the shop is real — a shop owner can look at it and picture their own menu and prices in the same layout.",
+    features: [
+      "Hero, menu filter, order builder, FAQ, visit, and contact",
+      "Order total in ৳, with a message draft, demo only",
+      "Mobile-first layout, no horizontal scroll",
+      "Clear demo labelling everywhere — prices and hours are examples",
+    ],
+    tech: ["HTML5", "CSS3", "JavaScript"],
+    liveLink: "/demos/landing",
+    image: "/landing-demo.jpg",
+    status: "DEPLOYED",
+  },
+  {
+    id: "PRJ-05",
+    slug: "layout-fix-demo",
+    hideFromGrid: true,
+    title: "Layout Fix Demo",
+    shortDescription:
+      "A before-and-after layout fix demo, with the same cards shown broken, then fixed. This shows the bug-fix service I sell.",
+    idea:
+      "Most layout bugs are invisible to the person who built the site — until a customer opens it on a phone and the page scrolls sideways or the text gets cut off. This demo shows the problem and the fix side by side, so a shop owner can see exactly what they are paying to have fixed.",
+    longDescription:
+      "A before-and-after demo in a 360px phone frame, with a toggle. The Before version is intentionally broken: a fixed 900px container, nowrap titles, and a row that never stacks. The After version fixes all three, with the changes explained in plain terms. It covers five named bugs and includes a code-diff view, so the fix is not a mystery — it is a visible, explainable change.",
+    features: [
+      "Before and After toggle in a 360px phone frame",
+      "Five named bugs, plus a code-diff view",
+      "Fixed version checked for no horizontal scroll at phone width",
+      "Each bug explained in plain terms — what was wrong, what changed",
+    ],
+    tech: ["HTML5", "CSS3", "Responsive Design"],
+    liveLink: "/demos/layout-fix",
+    image: "/layout-fix-demo.jpg",
     status: "DEPLOYED",
   },
 ];
