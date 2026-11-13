@@ -2,13 +2,53 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 
+/* Scope builder (Step 5, 2026-11-13): the deliverable pills and
+ * timeline below compose the top of the message — "Project: …" and
+ * "Timeline: …" — so a visitor's brief starts itself. The scope
+ * lives in state and shows in the "Your brief so far" preview; the
+ * message box holds only the visitor's own words, and the two are
+ * joined at submit time (formData.set) before the Web3Forms send.
+ * The scope lines are never mixed into the editable box: an earlier
+ * version did that and a mid-text edit duplicated the lines (caught
+ * by the local render check, 2026-11-14). Pills toggle; the timeline
+ * is one choice at a time. A pill-only send is allowed — the message
+ * box is no longer required — but a send with neither pills nor
+ * words is stopped with a friendly note. */
+const DELIVERABLES = [
+  "Bilingual / Custom Web Platform",
+  "E-Commerce + bKash/Nagad Checkout",
+  "Responsive UI Overhaul",
+  "High-Conversion Landing Page",
+];
+const TIMELINES = ["Within a week", "Within 2 weeks", "Within a month", "Flexible"];
+
 export default function Contact() {
   const [result, setResult] = useState("");
+  const [selected, setSelected] = useState([]);
+  const [timeline, setTimeline] = useState("");
+
+  const scopeLines = [];
+  if (selected.length) scopeLines.push(`Project: ${selected.join(", ")}`);
+  if (timeline) scopeLines.push(`Timeline: ${timeline}`);
+
+  function toggleDeliverable(item) {
+    setSelected((prev) => (prev.includes(item) ? prev.filter((x) => x !== item) : [...prev, item]));
+  }
+
+  function pickTimeline(item) {
+    setTimeline((prev) => (prev === item ? "" : item));
+  }
 
   const onSubmit = async (event) => {
     event.preventDefault();
-    setResult("Sending...");
     const formData = new FormData(event.target);
+    const typed = String(formData.get("message") || "").trim();
+    if (!scopeLines.length && !typed) {
+      setResult("Pick a service above or write a message first.");
+      return;
+    }
+    setResult("Sending...");
+    formData.set("message", scopeLines.length ? scopeLines.join("\n") + (typed ? "\n\n" + typed : "") : typed);
 
     // Replace with your actual Web3Forms Access Key
     formData.append("access_key", "381a0fb1-c048-4171-904e-8f74ca3a6ca5");
@@ -23,6 +63,8 @@ export default function Contact() {
     if (data.success) {
       setResult("Message Transmitted Successfully.");
       event.target.reset();
+      setSelected([]);
+      setTimeline("");
     } else {
       console.log("Error", data);
       setResult(data.message);
@@ -143,8 +185,52 @@ export default function Contact() {
               </div>
 
               <div className="space-y-2">
+                <span className="text-xs font-semibold uppercase tracking-widest text-neutral-500">What do you need?</span>
+                <div className="flex flex-wrap gap-2">
+                  {DELIVERABLES.map((item) => (
+                    <button
+                      key={item}
+                      type="button"
+                      aria-pressed={selected.includes(item)}
+                      onClick={() => toggleDeliverable(item)}
+                      className={`px-3 py-2 rounded-full text-xs font-medium border transition-colors ${selected.includes(item) ? "bg-white text-[#050505] border-white" : "bg-[#050505] text-neutral-300 border-white/[0.1] hover:border-white/[0.3] hover:text-white"}`}
+                    >
+                      {item}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div className="space-y-2">
+                <span className="text-xs font-semibold uppercase tracking-widest text-neutral-500">When do you need it?</span>
+                <div className="flex flex-wrap gap-2">
+                  {TIMELINES.map((item) => (
+                    <button
+                      key={item}
+                      type="button"
+                      aria-pressed={timeline === item}
+                      onClick={() => pickTimeline(item)}
+                      className={`px-3 py-2 rounded-full text-xs font-medium border transition-colors ${timeline === item ? "bg-white text-[#050505] border-white" : "bg-[#050505] text-neutral-300 border-white/[0.1] hover:border-white/[0.3] hover:text-white"}`}
+                    >
+                      {item}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {scopeLines.length > 0 && (
+                <div className="space-y-2">
+                  <span className="text-xs font-semibold uppercase tracking-widest text-neutral-500">Your brief so far</span>
+                  <div className="bg-[#050505] border border-white/[0.1] rounded-xl px-4 py-3 text-sm text-neutral-300 whitespace-pre-line leading-relaxed">
+                    {scopeLines.join("\n")}
+                  </div>
+                  <p className="text-xs text-neutral-500">These lines go at the top of your message when you send it.</p>
+                </div>
+              )}
+
+              <div className="space-y-2">
                 <label htmlFor="message" className="text-xs font-semibold uppercase tracking-widest text-neutral-500">Message</label>
-                <textarea name="message" required rows="5" className="w-full bg-[#050505] border border-white/[0.1] rounded-xl px-4 py-3 text-sm text-white placeholder-neutral-600 focus:outline-none focus:border-white/[0.3] focus:ring-1 focus:ring-white/[0.3] transition-all resize-none" placeholder="Let's build something..."></textarea>
+                <textarea name="message" rows="5" className="w-full bg-[#050505] border border-white/[0.1] rounded-xl px-4 py-3 text-sm text-white placeholder-neutral-600 focus:outline-none focus:border-white/[0.3] focus:ring-1 focus:ring-white/[0.3] transition-all resize-none" placeholder="Tell me about the project — the picks above already cover the basics."></textarea>
               </div>
 
               <button type="submit" className="w-full py-4 rounded-xl bg-white text-[#050505] font-bold text-sm hover:scale-[1.02] transition-transform duration-300 shadow-[0_0_20px_rgba(255,255,255,0.1)]">
