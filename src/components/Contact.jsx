@@ -48,7 +48,7 @@ export default function Contact() {
             Initiate Contact.
           </h2>
           <p className="text-base sm:text-lg text-neutral-400 max-w-xl mx-auto leading-relaxed font-light">
-            Need a landing page or a layout fix? Send a message, no calls or meetings. I build, test on phone, tablet, and desktop, and revise until it works.
+            Need a landing page or a layout fix? Send a message to start — brief, staging link, then revisions until it works on your device.
           </p>
         </motion.div>
 

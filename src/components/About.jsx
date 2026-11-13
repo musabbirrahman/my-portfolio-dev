@@ -22,8 +22,52 @@ export default function About() {
             How I work.
           </h2>
           <p className="text-base sm:text-lg text-neutral-400 leading-relaxed font-light">
-            I work by message only, no calls or meetings. You send the brief, I build, I test on phone, tablet, and desktop, and I revise until it works.
+            No calls, no meetings — the whole job runs in writing, in three steps.
           </p>
+        </motion.div>
+
+        {/* Async Shipping Protocol (Step 4, 2026-11-13): the three
+            "message only" notices used to sit in three places on this
+            page. They are now this one card — the boundary stated once,
+            as a process, not a warning. */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+          className="mb-16 md:mb-20 grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6"
+        >
+          {[
+            {
+              id: "01",
+              title: "Written Brief & Scope Lock",
+              text: "You send the brief in writing. We agree what gets built before anything starts.",
+            },
+            {
+              id: "02",
+              title: "Staging Link on Real Viewports",
+              text: "You get a staging link to open on your own phone, tablet, and desktop.",
+            },
+            {
+              id: "03",
+              title: "Zero-Meeting Iteration Until Verified",
+              text: "Revisions in writing until the layout works on your device.",
+            },
+          ].map((step) => (
+            <div
+              key={step.id}
+              className="rounded-3xl bg-white/[0.02] border border-white/[0.05] hover:bg-white/[0.03] transition-colors p-6 md:p-8"
+            >
+              <span className="text-xs font-semibold uppercase tracking-widest text-neutral-500">
+                {step.id}
+              </span>
+              <h3 className="mt-3 text-lg font-bold text-neutral-200 leading-snug">
+                {step.title}
+              </h3>
+              <p className="mt-2 text-neutral-400 text-sm leading-relaxed font-light">
+                {step.text}
+              </p>
+            </div>
+          ))}
         </motion.div>
 
         {/* --- HIGH-DENSITY BENTO GRID --- */}
@@ -82,7 +126,7 @@ export default function About() {
           >
             <span className="text-xs font-semibold uppercase tracking-widest text-neutral-500 mb-4 block">Academic Trajectory</span>
             <h3 className="text-xl font-bold text-neutral-200 mb-2">BSc Computer Science</h3>
-            <p className="text-neutral-400 text-sm mb-6">Currently establishing a deep foundation in Data Structures, Algorithms, and System Design.</p>
+            <p className="text-neutral-400 text-sm mb-6">Brahmaputra International University — Data Structures, Algorithms, System Design.</p>
             
             <div className="flex items-center gap-4 text-xs font-medium text-neutral-500 border-t border-white/[0.05] pt-4">
               <span className="flex items-center gap-2">
@@ -123,10 +167,6 @@ export default function About() {
           >
             <span className="text-xs font-semibold uppercase tracking-widest text-neutral-500 mb-4 block">Off-Screen Data</span>
             <div className="space-y-3">
-              <div className="flex items-start gap-3">
-                <span className="text-neutral-600 mt-0.5">▹</span>
-                <p className="text-xs text-neutral-400 font-light leading-relaxed">Message only, no calls or meetings.</p>
-              </div>
               <div className="flex items-start gap-3">
                 <span className="text-neutral-600 mt-0.5">▹</span>
                 <p className="text-xs text-neutral-400 font-light leading-relaxed">Build, then test on phone, tablet, and desktop.</p>
