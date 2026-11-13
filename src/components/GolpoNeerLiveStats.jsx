@@ -10,7 +10,10 @@ import { useEffect, useState } from "react";
 const SUPABASE_URL = "https://gwqngoywcupkytyxukfu.supabase.co/rest/v1";
 const PUBLISHABLE_KEY = "sb_publishable_zynfKNRZXjfZSFX6dVrdhg_mimIkF1h";
 
-const FALLBACK = { stories: 37, chapters: 510, words: 1139125 };
+/* Known counts, verified live 2026-11-13 (38 stories, 511 chapters,
+ * 1,139,932 words). Keep these current: they are what the strip shows
+ * before the fetch returns, and what it keeps if the fetch fails. */
+const FALLBACK = { stories: 38, chapters: 511, words: 1139932 };
 
 function parseTotal(contentRange) {
   if (!contentRange) return null;
@@ -86,7 +89,12 @@ export default function GolpoNeerLiveStats() {
         <div className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 md:gap-8 max-w-3xl mx-auto">
           {items.map((item) => (
             <div key={item.label} className="rounded-3xl bg-white/[0.02] border border-white/[0.05] px-4 py-6 md:py-8 text-center">
-              <p className="text-3xl md:text-5xl font-black text-white tracking-tight">
+              {/* text-4xl max, not text-5xl: at md and up the strip is
+                  3 columns in a max-w-3xl row, so each card is only
+                  ~233px wide — "1,139,932" at 48px needs 224px plus
+                  padding and spills out of the card (overflow seen
+                  at every width 768px and up). 36px fits with room. */}
+              <p className="text-3xl md:text-4xl font-black text-white tracking-tight">
                 {item.value.toLocaleString("en-US")}
               </p>
               <p className="mt-2 text-xs md:text-sm text-neutral-400 font-light">{item.label}</p>
