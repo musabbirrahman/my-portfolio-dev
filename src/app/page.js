@@ -1,6 +1,6 @@
 import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
-import SkillsMarquee from "../components/SkillsMarquee";
+import CapabilitiesMatrix from "../components/CapabilitiesMatrix";
 import Education from "../components/Education"; // <-- Add this import
 import Projects from "../components/Projects";
 import BeforeAfterSlider from "../components/BeforeAfterSlider";
@@ -15,7 +15,11 @@ import Footer from "../components/Footer";
  * GolpoNeer project card, so the flagship is now one showcase:
  * the card first, then the live numbers right after it. The
  * GolpoNeerBanner component file stays in the repo, unused.
- * Education moves below Selected Work. */
+ * Education moves below Selected Work.
+ *
+ * Step 3 (2026-11-13): the scrolling SkillsMarquee is replaced by
+ * the CapabilitiesMatrix — same facts as proof, not a ticker.
+ * The SkillsMarquee component file stays in the repo, unused. */
 export default function Home() {
   return (
     <main>
@@ -24,7 +28,7 @@ export default function Home() {
       <Projects />
       <GolpoNeerLiveStats />
       <BeforeAfterSlider />
-      <SkillsMarquee />
+      <CapabilitiesMatrix />
       <Education />
       <About />
       <Contact />
