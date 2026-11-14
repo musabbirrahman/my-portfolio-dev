@@ -224,10 +224,13 @@ function CheckoutCard() {
             </button>
           ))}
         </div>
-        {/* One line, always: the old "Paying with …" line wrapped to two
-            lines and reflowed as the total grew. Shortened + nowrap so
-            the card height never changes with qty. */}
-        <p className="mt-3 whitespace-nowrap text-center font-mono text-[11px] text-ink-faint">
+        {/* One line, always — except at md (768–1023), where the
+            three-across deck makes this box only ~145px wide and the
+            203px line spills out of the card (found 2026-11-14 in the
+            12-width sweep). There it wraps to two lines; the wrap is
+            width-dependent, not control-dependent, so qty/pay changes
+            still never move the box. */}
+        <p className="mt-3 whitespace-nowrap text-center font-mono text-[11px] text-ink-faint md:whitespace-normal">
           {pay} · Total ৳{price * qty} + delivery
         </p>
       </div>
