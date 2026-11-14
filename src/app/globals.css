@@ -1,64 +1,202 @@
 @import "tailwindcss";
 @plugin "daisyui";
+
+/* ============================================================
+ * The Tactile Atelier — demo (2026-11-14, NOT shipped).
+ * Daylight-first palette, three-voice typography, Swiss grid
+ * discipline. Light is the default; Obsidian is one click away.
+ * Fonts are self-hosted in /public/fonts (no network fetch).
+ * ============================================================ */
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  src: url("/fonts/PlusJakartaSans.ttf") format("truetype-variations");
+  font-weight: 200 800;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Newsreader";
+  src: url("/fonts/Newsreader.ttf") format("truetype-variations");
+  font-weight: 200 800;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Newsreader";
+  src: url("/fonts/Newsreader-Italic.ttf") format("truetype-variations");
+  font-weight: 200 800;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("/fonts/JetBrainsMono.ttf") format("truetype-variations");
+  font-weight: 100 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Daylight first — warm museum-grade alabaster */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --paper: #f7f6f2;
+  --ink: #111110;
+  --ink-soft: rgba(17, 17, 16, 0.62);
+  --ink-faint: rgba(17, 17, 16, 0.42);
+  --hairline: #e2e0d8;
+  --card: #fffefb;
+  --muted: #efede6;
+  --signal: #ff4d00;
+  --signal-ink: #ffffff;
+  --shadow: 0 8px 30px rgba(17, 17, 16, 0.08);
+}
+
+/* Above the Gray Fog — one click away (LotM part 2, 2026-11-14).
+ * The same Obsidian, now with tarnished brass hairlines and a
+ * crimson moon for indicators. */
+[data-theme="dark"] {
+  --paper: #0b0c0e;
+  --ink: #f2f1ec;
+  --ink-soft: rgba(242, 241, 236, 0.62);
+  --ink-faint: rgba(242, 241, 236, 0.42);
+  --hairline: #37332a;
+  --brass: #c5a059;
+  --moon: #e04f3e;
+  --card: #121316;
+  --muted: #16181b;
+  /* Above the Gray Fog, the accent is Crimson Moon, not the daylight
+   * vermilion — the realm must feel distinct, not inverted. */
+  --signal: #e04f3e;
+  --signal-ink: #ffffff;
+  --shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-ink-faint: var(--ink-faint);
+  --color-hairline: var(--hairline);
+  --color-card: var(--card);
+  --color-muted: var(--muted);
+  --color-signal: var(--signal);
+  --color-signal-ink: var(--signal-ink);
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Newsreader", Georgia, serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background-color: #050505;
-  color: #e5e5e5;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Theme flips fade instead of snapping */
+/* One clock for the realm switch (fix 2026-11-14): every themed
+ * surface — body, header, footer, cards — shifts in 150ms, the
+ * same duration as Tailwind's transition-colors on the buttons.
+ * Before this, surfaces ran 450ms while buttons ran 150ms, so the
+ * deck cards read as lagging ~250ms behind the canvas. */
+body, header, footer, .atelier-surface {
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
 }
 
-/* Custom Animations for Hero and Skills Marquee */
+::selection {
+  background: var(--signal);
+  color: #fff;
+}
+
+:focus-visible {
+  outline: 2px solid var(--signal);
+  outline-offset: 2px;
+}
+
+/* Custom Animations (kept from the old site — old components still use them) */
 @keyframes shimmer {
   100% { transform: translateX(100%); }
 }
 
 @keyframes marquee {
   0% { transform: translateX(0%); }
-  100% { transform: translateX(-50%); } /* Changed to -50% for seamless looping */
+  100% { transform: translateX(-50%); }
 }
 
 .animate-marquee {
   animation: marquee 30s linear infinite;
 }
 
-/* Added the reverse class */
 .animate-marquee-reverse {
   animation: marquee 30s linear infinite reverse;
 }
 
-/* Animation for the Education Section Rocket */
 @keyframes float {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
 }
 
 .animate-float {
   animation: float 3s ease-in-out infinite;
+}
+
+/* Availability pulse — emerald in the Material World, crimson moon
+ * Above the Gray Fog */
+.pulse-dot {
+  background: #10b981;
+}
+[data-theme="dark"] .pulse-dot {
+  background: #e04f3e;
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(1); opacity: 0.7; }
+  100% { transform: scale(2.4); opacity: 0; }
+}
+
+.animate-pulse-ring {
+  animation: pulse-ring 1.8s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}
+
+/* The Gray Fog — a slow-drifting mist behind the hero, visible only
+ * in the dark realm (LotM part 2, 2026-11-14). Faint by design: it
+ * must feel like weather, not wallpaper. */
+.fog-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  background:
+    radial-gradient(ellipse 80% 60% at 70% 15%, rgba(197, 160, 89, 0.12), transparent 60%),
+    radial-gradient(ellipse 60% 50% at 15% 85%, rgba(224, 79, 62, 0.08), transparent 60%),
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.012' numOctaves='2'/><feColorMatrix values='0 0 0 0 0.6 0 0 0 0 0.6 0 0 0 0 0.6 0 0 0 0.05 0'/></filter><rect width='300' height='300' filter='url(%23n)'/></svg>");
+  background-size: auto, auto, 300px 300px;
+}
+[data-theme="dark"] .fog-layer {
+  opacity: 1;
+  animation: fogdrift 70s linear infinite;
+}
+@keyframes fogdrift {
+  from { background-position: 0 0, 0 0, 0 0; }
+  to { background-position: 0 0, 0 0, 300px 150px; }
+}
+
+/* Tarnished Brass on the Sequence numerals — dark realm only
+ * (refinement 2026-11-14). */
+[data-theme="dark"] .sequence-num {
+  border-color: #c5a059;
+}
+
+/* Engraved blueprint paper — the Inspect Blueprint drawer (LotM part 2) */
+.blueprint-grid {
+  background-color: #16324f;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+  background-size: 24px 24px;
 }

@@ -1,38 +1,33 @@
-import Navbar from "../components/Navbar";
-import Hero from "../components/Hero";
-import CapabilitiesMatrix from "../components/CapabilitiesMatrix";
-import Education from "../components/Education"; // <-- Add this import
-import Projects from "../components/Projects";
-import BeforeAfterSlider from "../components/BeforeAfterSlider";
-import GolpoNeerLiveStats from "../components/GolpoNeerLiveStats";
-import About from "../components/About";
-import Contact from "../components/Contact";
-import Footer from "../components/Footer";
+import Hero from "../components/atelier/Hero";
+import ProductDeck from "../components/atelier/ProductDeck";
+import Showcases from "../components/atelier/Showcase";
+import Bento from "../components/atelier/Bento";
+import Sequence from "../components/atelier/Sequence";
+import Ledger from "../components/atelier/Ledger";
+import Closing from "../components/atelier/Closing";
 
-/* Homepage order (Step 2 reorder, 2026-11-13): Selected Work sits
- * immediately below the Hero, led by GolpoNeer. The standalone
- * GolpoNeerBanner is gone — its image and link duplicated the
- * GolpoNeer project card, so the flagship is now one showcase:
- * the card first, then the live numbers right after it. The
- * GolpoNeerBanner component file stays in the repo, unused.
- * Education moves below Selected Work.
- *
- * Step 3 (2026-11-13): the scrolling SkillsMarquee is replaced by
- * the CapabilitiesMatrix — same facts as proof, not a ticker.
- * The SkillsMarquee component file stays in the repo, unused. */
+/* The Tactile Atelier — demo page order (2026-11-14, NOT shipped).
+ * A fresh redesign from the brief the owner uploaded — daylight-first,
+ * Swiss grid, editorial type. The hero rule stands: headline + CTAs
+ * only; the Live Product Deck lives below the hero, in the work.
+ * No entry ritual, no world canvas, no brain — those are parked
+ * (Entry.jsx, World.jsx, Brain.jsx stay in the repo, unused).
+ * The old sections (Projects, GolpoNeerLiveStats, BeforeAfterSlider,
+ * CapabilitiesMatrix, Education, About, Contact) stay in the repo,
+ * unused — their approved content (capabilities, async protocol,
+ * scope builder) is carried into the new sections where the brief
+ * covers it. The old scope-builder contact form is replaced here by
+ * the brief's 3-field inquiry card. */
 export default function Home() {
   return (
-    <main>
-      <Navbar />
+    <main className="relative bg-paper text-ink">
       <Hero />
-      <Projects />
-      <GolpoNeerLiveStats />
-      <BeforeAfterSlider />
-      <CapabilitiesMatrix />
-      <Education />
-      <About />
-      <Contact />
-      {/* <Footer /> */}
+      <ProductDeck />
+      <Showcases />
+      <Bento />
+      <Sequence />
+      <Ledger />
+      <Closing />
     </main>
   );
 }
