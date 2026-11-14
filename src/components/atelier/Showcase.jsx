@@ -38,7 +38,7 @@ const SHOWCASES = [
     problem:
       "A homemade dessert shop taking orders over chat needed a real storefront: menu, checkout, payment proof, and kitchen alerts.",
     decision:
-      "Next.js storefront on Cloudflare Workers with Turso at the edge, bKash/Nagad payment verification by transaction ID, and automated Telegram alerts to the kitchen.",
+      "Next.js storefront on Cloudflare Workers with Turso at the edge, bKash/Nagad payment verification by transaction ID, automated Telegram alerts to the kitchen, and an admin panel for orders, daily caps, and loyalty.",
     outcome:
       "Live with the real menu and a full payment flow — orders, payment checks, and kitchen alerts running.",
     stack: ["Next.js", "Cloudflare Workers", "Turso", "bKash / Nagad", "Telegram"],

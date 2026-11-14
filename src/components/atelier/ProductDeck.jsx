@@ -15,7 +15,7 @@ import { useState } from "react";
 function Card({ children, className = "" }) {
   return (
     <div
-      className={`atelier-surface rounded-2xl border border-hairline bg-card p-5 shadow-[0_8px_30px_rgba(17,17,16,0.06)] sm:p-6 ${className}`}
+      className={`atelier-surface flex flex-col rounded-2xl border border-hairline bg-card p-5 shadow-[0_8px_30px_rgba(17,17,16,0.06)] sm:p-6 ${className}`}
     >
       {children}
     </div>
@@ -75,14 +75,23 @@ function PulseCard() {
           </div>
         ))}
       </div>
-      <a
-        href="https://golponeer.com"
-        target="_blank"
-        rel="noreferrer"
-        className="mt-4 inline-block text-sm font-bold text-signal hover:underline"
-      >
-        Visit golponeer.com ↗
-      </a>
+      {/* Latest story (added 2026-11-14): the card had a dead third at
+          the bottom — this fills it with something alive, and the link
+          pins to the bottom so the card reads finished. */}
+      <p className="mt-4 border-t border-hairline pt-4 text-sm leading-relaxed text-ink-soft">
+        <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-ink-faint">Latest — </span>
+        শেষ পাতা · O. Henry&apos;s <em className="font-serif italic">The Last Leaf</em>, in Bangla.
+      </p>
+      <div className="mt-auto pt-4">
+        <a
+          href="https://golponeer.com"
+          target="_blank"
+          rel="noreferrer"
+          className="inline-block text-sm font-bold text-signal hover:underline"
+        >
+          Visit golponeer.com ↗
+        </a>
+      </div>
     </Card>
   );
 }
@@ -161,15 +170,18 @@ function StressCard() {
       <div className="mt-5 overflow-hidden rounded-xl border border-hairline bg-paper">
         <div
           className="mx-auto border-x border-hairline bg-card transition-[width] duration-200 ease-out"
-          style={{ width: `${Math.max(34, (w / 1440) * 100)}%`, minWidth: 120 }}
+          style={{ width: `${Math.max(34, (w / 1440) * 100)}%`, minWidth: 160 }}
         >
           <div className="flex items-center gap-1.5 border-b border-hairline px-3 py-2">
-            <span className="h-2 w-2 rounded-full bg-[#FF5F57]" />
-            <span className="h-2 w-2 rounded-full bg-[#FEBC2E]" />
-            <span className="h-2 w-2 rounded-full bg-[#28C840]" />
-            {/* Truncated: the full URL overflowed the mini frame by 69px
-                at every width (fixed 2026-11-14). */}
-            <span className="ml-2 min-w-0 flex-1 truncate font-mono text-[10px] text-ink-faint">musabbirrahman.vercel.app</span>
+            <span className="h-2 w-2 shrink-0 rounded-full bg-[#FF5F57]" />
+            <span className="h-2 w-2 shrink-0 rounded-full bg-[#FEBC2E]" />
+            <span className="h-2 w-2 shrink-0 rounded-full bg-[#28C840]" />
+            {/* Full name, never truncated (fixed 2026-11-14): the long
+                portfolio URL overflowed, then truncated to "musabb…"
+                — which reads as the very cut-off title this card
+                promises never happens. "golponeer.com" is shorter
+                and shows in full at every slider position. */}
+            <span className="ml-2 whitespace-nowrap font-mono text-[10px] text-ink-faint">golponeer.com</span>
           </div>
           <div className="space-y-2 p-3">
             <div className="h-3 w-3/4 rounded bg-ink/80" />
