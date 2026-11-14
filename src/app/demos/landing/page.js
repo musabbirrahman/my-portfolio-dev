@@ -50,13 +50,16 @@ export default function LandingDemo() {
 
   return (
     <main className="bg-[#fdf8f0] text-neutral-900 min-w-0">
-      <div className="bg-amber-100 border-b border-amber-200 px-4 py-3 text-center">
-        <p className="text-xs sm:text-sm text-amber-900">Demo landing page — fictional business, built for portfolio only. Prices and hours below are examples, not a real shop.</p>
+      <div className="bg-card border-b border-hairline px-4 py-3 text-center">
+        <p className="text-sm text-ink-soft">
+          <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-ink-faint">Demo · Fictional bakery — </span>
+          prices and hours below are examples, not a real shop.
+        </p>
       </div>
 
       {/* Way out (fixed 2026-11-14): see the layout-fix page — demo pages
           had no exit at the top. */}
-      <p className="max-w-6xl mx-auto px-4 sm:px-6 pt-6"><Link href="/" className="text-sm font-bold text-neutral-900 underline underline-offset-4">← Back to portfolio</Link></p>
+      <p className="max-w-6xl mx-auto px-4 sm:px-6 pt-6"><Link href="/" className="text-sm font-bold text-ink underline underline-offset-4">← Back to portfolio</Link></p>
       <header className="max-w-6xl mx-auto px-4 sm:px-6 py-6 flex flex-wrap items-center justify-between gap-4">
         <div className="min-w-0">
           <p className="text-2xl font-extrabold tracking-tight">Shonar Bakery</p>
@@ -173,7 +176,7 @@ export default function LandingDemo() {
             </form>
           )}
         </div>
-        <p className="mt-6 text-center text-sm text-neutral-500"><Link href="/" className="underline">Back to portfolio</Link> · Demo by Musabbir Rahman</p>
+        <p className="mt-6 text-center text-sm text-ink-faint"><Link href="/" className="underline">Back to portfolio</Link> · Demo by Musabbir Rahman</p>
       </section>
     </main>
   );

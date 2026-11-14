@@ -54,7 +54,7 @@ const SHOWCASES = [
     problem:
       "Real layouts break on real phones: long titles stretch grids, buttons fall off-screen, tap targets go unreachable.",
     decision:
-      "A lab of before/after demos where visitors drag a viewport handle and watch the same layout fail, then hold — min-w-0 grid children, overflow guards, tap targets that stay reachable.",
+      "A lab in two acts — before/after demos where visitors watch the same layout fail, then hold, and a proof sweep of the fixed layout at all twelve widths, 320 to 1920, each measured live. Min-w-0 grid children, overflow guards, tap targets that stay reachable.",
     outcome:
       "Every fix in the lab is a fix that shipped on a live site — including the 320px card-thumb and library cover-crop fixes on GolpoNeer.",
     stack: ["CSS Grid", "Tailwind CSS", "12-Viewport Manual QA"],
