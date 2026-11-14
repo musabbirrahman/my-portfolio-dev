@@ -9,7 +9,7 @@ const PROFILES = [
   { label: "LinkedIn", href: "https://www.linkedin.com/in/musabbirrahman" },
   { label: "X", href: "https://x.com/MusabbirRahman0" },
   { label: "Medium", href: "https://medium.com/@musabbirrahman" },
-  { label: "Resume", href: "/Musabbir_Rahman_Resume.pdf" },
+  { label: "Resume", href: "/Musabbir_Rahman_Resume.pdf", external: true },
 ];
 
 export default function Ledger() {
@@ -35,7 +35,7 @@ export default function Ledger() {
                 <a
                   key={p.label}
                   href={p.href}
-                  {...(p.href.startsWith("http") ? { target: "_blank", rel: "noreferrer" } : {})}
+                  {...(p.href.startsWith("http") || p.external ? { target: "_blank", rel: "noreferrer" } : {})}
                   className="text-[15px] font-bold text-ink underline decoration-hairline underline-offset-4 transition-colors hover:text-signal hover:decoration-signal"
                 >
                   {p.label} ↗

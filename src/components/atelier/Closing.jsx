@@ -162,7 +162,7 @@ export default function Closing() {
         <div className="mt-12 grid gap-10 lg:grid-cols-2 lg:gap-12">
           <div>
             <h2 className="text-3xl font-extrabold tracking-[-0.02em] text-ink sm:text-4xl">
-              Let&rsquo;s build it <em className="font-serif font-medium italic">from zero to live.</em>
+              Have a product in mind? <em className="font-serif font-medium italic">Let&rsquo;s ship it.</em>
             </h2>
             <p className="mt-3 max-w-md text-[15px] leading-relaxed text-ink-soft">
               A landing page, a storefront, a layout that finally holds on every phone — send a brief and I&rsquo;ll reply in writing.
