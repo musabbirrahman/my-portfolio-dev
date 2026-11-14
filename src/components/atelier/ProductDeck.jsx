@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 /* Live Product Deck — the Atelier (demo 2026-11-14).
  * The deck lives BELOW the hero (the hero rule: headline + CTAs
@@ -137,16 +137,16 @@ function PulseCard() {
       </p>
       <div className="mt-5 grid grid-cols-3 divide-x divide-hairline rounded-xl border border-hairline bg-paper py-3">
         {statsShown.map((s) => (
-          <div key={s.l} className="min-w-0 px-2 text-center md:px-1 lg:px-2">
+          <div key={s.l} className="min-w-0 px-2 text-center">
             {/* whitespace-nowrap: the number line must never break,
                 at any width (2026-11-14). tabular-nums keeps every
                 digit the same width, so a live swap moves nothing.
-                md: one step smaller + tighter cells — at 768-1023 the
-                deck is 3-across, so the cells are only ~43px and
-                "1.1M+" at text-xl (60px) cannot fit; 16px (48px) in
-                a 52px cell fits. Back to text-xl at lg, where the
-                cells are 72px+. */}
-            <p className="whitespace-nowrap font-mono text-lg font-bold tabular-nums text-ink sm:text-xl md:text-base lg:text-xl">{s.n}</p>
+                The md one-step-smaller numbers are gone (2026-11-14):
+                the deck used to be 3-across at 768-1023, so the cells
+                were only ~43px and "1.1M+" at text-xl (60px) could
+                not fit. The deck now stacks until lg, so md cells
+                are full-width and text-xl fits everywhere. */}
+            <p className="whitespace-nowrap font-mono text-lg font-bold tabular-nums text-ink sm:text-xl">{s.n}</p>
             <p className="mt-0.5 whitespace-nowrap text-[11px] font-medium text-ink-soft">{s.l}</p>
           </div>
         ))}
@@ -224,13 +224,12 @@ function CheckoutCard() {
             </button>
           ))}
         </div>
-        {/* One line, always — except at md (768–1023), where the
-            three-across deck makes this box only ~145px wide and the
-            203px line spills out of the card (found 2026-11-14 in the
-            12-width sweep). There it wraps to two lines; the wrap is
-            width-dependent, not control-dependent, so qty/pay changes
-            still never move the box. */}
-        <p className="mt-3 whitespace-nowrap text-center font-mono text-[11px] text-ink-faint md:whitespace-normal">
+        {/* One line, always: the old "Paying with …" line wrapped to two
+            lines and reflowed as the total grew. Shortened + nowrap so
+            the card height never changes with qty. (The md wrap added
+            2026-11-14 is gone too: the deck stacked until lg, so the
+            box is wide at md now and the line fits on one line.) */}
+        <p className="mt-3 whitespace-nowrap text-center font-mono text-[11px] text-ink-faint">
           {pay} · Total ৳{price * qty} + delivery
         </p>
       </div>
@@ -249,6 +248,23 @@ function CheckoutCard() {
 /* --- 3 · Viewport Stress-Test --- */
 function StressCard() {
   const [w, setW] = useState(390);
+  const wrapRef = useRef(null);
+  const [wrapW, setWrapW] = useState(0);
+  useEffect(() => {
+    function measure() {
+      if (wrapRef.current) setWrapW(wrapRef.current.clientWidth);
+    }
+    measure();
+    window.addEventListener("resize", measure);
+    return () => window.removeEventListener("resize", measure);
+  }, []);
+  /* The frame grows with the slider across the whole card: 155px at
+     320, the full card width at 1440. (Fixed 2026-11-14: the old
+     fixed 155→325px map was capped by maxWidth at the narrow 229px
+     iPad cards, so the whole slider moved the frame 22px and the
+     demo looked dead. Measuring the card — the same pattern Act 2
+     uses — makes the frame use the full width at every size.) */
+  const frameW = wrapW ? Math.min(wrapW, 155 + ((w - 320) / 1120) * (wrapW - 155)) : 155;
   return (
     <Card>
       <Eyebrow>Viewport Stress-Test</Eyebrow>
@@ -256,16 +272,10 @@ function StressCard() {
       <p className="mt-2 text-sm leading-relaxed text-ink-soft">
         Drag the slider. The layout adapts cleanly — no sideways scroll, no cut-off titles.
       </p>
-      <div className="mt-5 overflow-hidden rounded-xl border border-hairline bg-paper">
+      <div ref={wrapRef} className="mt-5 overflow-hidden rounded-xl border border-hairline bg-paper">
         <div
           className="mx-auto border-x border-hairline bg-card transition-[width] duration-200 ease-out"
-          /* Linear map (fixed 2026-11-14): the old true-scale formula
-             (w/1440 of the container, min 160px) pinned the frame at
-             its minimum for the whole bottom half of the slider, so
-             nothing visibly moved until ~900px. Now 320px → 155px and
-             1440px → 325px (the container width), evenly: every
-             slider step moves the frame. */
-          style={{ width: `${155 + ((w - 320) / 1120) * 170}px`, maxWidth: "100%" }}
+          style={{ width: `${frameW}px`, maxWidth: "100%" }}
         >
           <div className="flex items-center gap-1.5 border-b border-hairline px-3 py-2">
             <span className="h-2 w-2 shrink-0 rounded-full bg-[#FF5F57]" />
@@ -324,7 +334,13 @@ export default function ProductDeck() {
           Touch them. These are the real products, not screenshots.
         </p>
       </div>
-      <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-3">
+      {/* One column until lg (2026-11-14): three-across at 768-1023
+          made 229px cards and every widget cramped — the viewport
+          slider moved its frame 22px over its whole range, the
+          ৳750 total touched the + button (0px gap), and "1.1M+" sat
+          in a 51px cell with zero margin. Stacked, each card gets
+          the full width and all three breathe. */}
+      <div className="mt-8 grid grid-cols-1 gap-4 lg:grid-cols-3">
         <PulseCard />
         <CheckoutCard />
         <StressCard />
