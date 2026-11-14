@@ -75,12 +75,17 @@ function PulseCard() {
           </div>
         ))}
       </div>
-      {/* Latest story (added 2026-11-14): the card had a dead third at
-          the bottom — this fills it with something alive, and the link
-          pins to the bottom so the card reads finished. */}
+      {/* Writer line (replaced the Latest line 2026-11-14): শেষ পাতা
+          was duplicated — the showcase below already shows it as the
+          reader mock. The card was also reader-only; this line states
+          the writer side, which the site must show equally. */}
       <p className="mt-4 border-t border-hairline pt-4 text-sm leading-relaxed text-ink-soft">
-        <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-ink-faint">Latest — </span>
-        শেষ পাতা · O. Henry&apos;s <em className="font-serif italic">The Last Leaf</em>, in Bangla.
+        <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-ink-faint">
+          {bn ? "লেখকদের জন্য — " : "For writers — "}
+        </span>
+        {bn
+          ? "আপনার গল্প পর্বে পর্বে প্রকাশ করুন।"
+          : "publish your story chapter by chapter."}
       </p>
       <div className="mt-auto pt-4">
         <a
@@ -170,7 +175,13 @@ function StressCard() {
       <div className="mt-5 overflow-hidden rounded-xl border border-hairline bg-paper">
         <div
           className="mx-auto border-x border-hairline bg-card transition-[width] duration-200 ease-out"
-          style={{ width: `${Math.max(34, (w / 1440) * 100)}%`, minWidth: 160 }}
+          /* Linear map (fixed 2026-11-14): the old true-scale formula
+             (w/1440 of the container, min 160px) pinned the frame at
+             its minimum for the whole bottom half of the slider, so
+             nothing visibly moved until ~900px. Now 320px → 155px and
+             1440px → 325px (the container width), evenly: every
+             slider step moves the frame. */
+          style={{ width: `${155 + ((w - 320) / 1120) * 170}px`, maxWidth: "100%" }}
         >
           <div className="flex items-center gap-1.5 border-b border-hairline px-3 py-2">
             <span className="h-2 w-2 shrink-0 rounded-full bg-[#FF5F57]" />
