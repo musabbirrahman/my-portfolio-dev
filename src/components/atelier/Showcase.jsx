@@ -64,6 +64,11 @@ const SHOWCASES = [
 ];
 
 function Frame({ kind }) {
+  /* One piece of state, only for the store toggle (added 2026-11-14):
+     it sits above the early returns so the hook runs on every render
+     for every frame kind. Nothing else in this file changed shape. */
+  const [pay, setPay] = useState("bKash");
+
   if (kind === "reader") {
     return (
       <div className="rounded-xl border border-hairline bg-paper p-5">
@@ -77,7 +82,16 @@ function Frame({ kind }) {
         </div>
         <div className="mt-5 flex items-center justify-between border-t border-hairline pt-3">
           <span className="font-mono text-[11px] text-ink-faint">পর্ব ১ · 3 min read</span>
-          <span className="rounded-full bg-signal px-3 py-1 text-[11px] font-bold text-white">Start reading →</span>
+          {/* Was a dead <span> (2026-11-14): same look, now a real
+              link to the live story — the button does what it says. */}
+          <a
+            href="https://golponeer.com/stories/golponeer/শেষ-পাতা"
+            target="_blank"
+            rel="noreferrer"
+            className="rounded-full bg-signal px-3 py-1 text-[11px] font-bold text-white transition-transform hover:scale-[1.04]"
+          >
+            Start reading →
+          </a>
         </div>
       </div>
     );
@@ -98,9 +112,25 @@ function Frame({ kind }) {
             </div>
           ))}
         </div>
+        {/* Was two dead <span>s (2026-11-14): same look, now a real
+            toggle — visual state only, NOT a second checkout (the
+            deck already has the working one). */}
         <div className="mt-4 flex gap-2">
-          <span className="flex-1 rounded-full bg-signal py-2 text-center text-[12px] font-bold text-white">bKash</span>
-          <span className="flex-1 rounded-full border border-hairline py-2 text-center text-[12px] font-bold text-ink">Nagad</span>
+          {["bKash", "Nagad"].map((m) => (
+            <button
+              key={m}
+              type="button"
+              onClick={() => setPay(m)}
+              aria-pressed={pay === m}
+              className={
+                pay === m
+                  ? "flex-1 rounded-full bg-signal py-2 text-center text-[12px] font-bold text-white"
+                  : "flex-1 rounded-full border border-hairline py-2 text-center text-[12px] font-bold text-ink transition-colors hover:border-ink-faint"
+              }
+            >
+              {m}
+            </button>
+          ))}
         </div>
       </div>
     );
@@ -109,11 +139,17 @@ function Frame({ kind }) {
     <div className="rounded-xl border border-hairline bg-paper p-5">
       <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-ink-faint">responsive lab · 320px — 1920px</p>
       <div className="mt-4 grid grid-cols-3 gap-2">
+        {/* Were three static boxes (2026-11-14): same look, now links
+            into the lab — the frames are doors, not pictures. */}
         {["320", "768", "1440"].map((w) => (
-          <div key={w} className="rounded-lg border border-hairline bg-card p-2 text-center">
+          <a
+            key={w}
+            href="/demos/layout-fix"
+            className="block rounded-lg border border-hairline bg-card p-2 text-center transition-colors hover:border-ink-faint"
+          >
             <div className="mx-auto h-8 w-full rounded bg-muted" />
             <p className="mt-2 font-mono text-[11px] font-bold text-ink">{w}px ✓</p>
-          </div>
+          </a>
         ))}
       </div>
       <p className="mt-4 text-sm leading-relaxed text-ink-soft">
