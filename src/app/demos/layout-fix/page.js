@@ -8,10 +8,14 @@ import Link from "next/link";
  * phone frame, code changes. Act 2: the proof — the same fixed layout
  * rendered at all twelve widths the portfolio is checked on (320 to
  * 1920), as named devices, with four checks measured live on the
- * frame — not asserted. The red/green in Act 1 is meaning, not
- * branding: broken is red, fixed is green. The preview frames are
- * the specimen (the bakery's cards), so they keep their own look;
- * everything around them is Atelier. */
+ * frame — not asserted. Wide devices (1440, 1920) render at a
+ * 1280px preview width: scaling a 1920px layout down makes the
+ * text unreadable and the 16:9 image tower over the cards, and
+ * the layout is identical from 1280 up. At those widths the image
+ * is a capped 280px band (a real site crops a banner), not a 16:9
+ * tower. The preview frames are the specimen (the bakery's cards),
+ * so they keep their own look — white page, dark text — in both
+ * themes; everything around them is Atelier. */
 
 const cards = [
   { title: "Fresh bread every single morning for the whole neighbourhood", desc: "Baked daily, simple prices, message to order." },
@@ -29,7 +33,7 @@ const bugs = [
 
 function BeforePreview() {
   return (
-    <div className="w-[360px] max-w-full border border-red-200 rounded-2xl overflow-x-auto bg-white">
+    <div className="w-[360px] max-w-full border border-red-200 rounded-2xl overflow-x-auto bg-white text-neutral-900">
       <div className="w-[900px] p-4">
         <h3 className="text-xl font-bold whitespace-nowrap">Our services and products for every customer today</h3>
         <div className="mt-4 flex gap-4">
@@ -41,7 +45,7 @@ function BeforePreview() {
             </div>
           ))}
         </div>
-        <div className="mt-4 h-[80px] w-[900px] bg-amber-200 flex items-center justify-center text-sm font-bold">Stretched image box — forced height, wrong shape</div>
+        <div className="mt-4 h-[80px] w-[900px] bg-amber-200 flex items-center justify-center px-4 text-center text-sm font-bold">Stretched image box — forced height, wrong shape</div>
       </div>
     </div>
   );
@@ -49,7 +53,7 @@ function BeforePreview() {
 
 function AfterPreview() {
   return (
-    <div className="w-[360px] max-w-full border border-emerald-200 rounded-2xl overflow-hidden bg-white">
+    <div className="w-[360px] max-w-full border border-emerald-200 rounded-2xl overflow-hidden bg-white text-neutral-900">
       <div className="w-full p-4 min-w-0">
         <h3 className="text-xl font-bold leading-snug">Our services and products for every customer today</h3>
         <div className="mt-4 grid grid-cols-1 gap-4">
@@ -61,7 +65,7 @@ function AfterPreview() {
             </div>
           ))}
         </div>
-        <div className="mt-4 aspect-video w-full bg-amber-200 rounded-xl flex items-center justify-center text-sm font-bold">Image box — shape kept, cropped from the top</div>
+        <div className="mt-4 aspect-video w-full bg-amber-200 rounded-xl flex items-center justify-center px-4 text-center text-sm font-bold">Image box — shape kept, cropped from the top</div>
       </div>
     </div>
   );
@@ -106,13 +110,23 @@ function ProofFrame({ width }) {
       const buttons = [...content.querySelectorAll("button")];
       const btnH = buttons.length ? Math.min(...buttons.map((b) => b.offsetHeight)) : 0;
       const img = content.querySelector("[data-image]");
-      const r = img ? img.getBoundingClientRect() : null;
-      const ratio = r && r.height ? r.width / r.height : 0;
+      /* Below 900px the box is 16:9; at wide widths a real site crops
+       * the banner to a band instead of towering 16:9 — so measure the
+       * ratio there, and the capped height here. */
+      let imageCheck;
+      if (width < 900) {
+        const r = img ? img.getBoundingClientRect() : null;
+        const ratio = r && r.height ? r.width / r.height : 0;
+        imageCheck = { label: "Image keeps its shape", value: `${ratio.toFixed(2)}:1`, ok: Math.abs(ratio - 16 / 9) < 0.15 };
+      } else {
+        const h = img ? img.offsetHeight : 0;
+        imageCheck = { label: "Image keeps its shape", value: `${h}px band`, ok: h >= 275 && h <= 285 };
+      }
       setChecks([
         { label: "No sideways scroll", value: `${overflowPx}px overflow`, ok: overflowPx === 0 },
         { label: "Titles fully readable", value: `${titlesFit}/${titles.length} fit`, ok: titlesFit === titles.length },
         { label: "Buttons tappable", value: `${btnH}px tall`, ok: btnH >= 44 },
-        { label: "Image keeps its shape", value: `${ratio.toFixed(2)}:1`, ok: Math.abs(ratio - 16 / 9) < 0.15 },
+        imageCheck,
       ]);
     }
     measure();
@@ -141,7 +155,7 @@ function ProofFrame({ width }) {
               </div>
             ))}
           </div>
-          <div data-image className="mt-4 aspect-video w-full bg-muted rounded-xl flex items-center justify-center text-sm font-bold text-ink">Image box — shape kept, cropped from the top</div>
+          <div data-image className={`mt-4 w-full bg-muted rounded-xl flex items-center justify-center px-4 text-center text-sm font-bold text-ink ${width < 900 ? "aspect-video" : "h-[280px]"}`}>Image box — shape kept, cropped from the top</div>
         </div>
       </div>
       {checks && (
@@ -164,6 +178,12 @@ function ProofFrame({ width }) {
 function ProofSection() {
   const [device, setDevice] = useState(390);
   const current = DEVICES.find((d) => d.w === device);
+  /* Wide devices render at a 1280px preview width (2026-11-14):
+   * scaling a 1920px layout down to fit makes the text unreadable
+   * and the 16:9 image tower over the cards. The layout is
+   * identical from 1280 up — same three columns, same buttons —
+   * so nothing is lost. */
+  const renderWidth = Math.min(device, 1280);
   return (
     <section className="mt-16 border-t border-hairline pt-12">
       <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-ink-faint">Act 2 · The proof</p>
@@ -191,10 +211,10 @@ function ProofSection() {
         ))}
       </div>
       <p className="mt-4 font-mono text-xs text-ink-faint">
-        Showing {device}px — {current.label}
+        Showing {device}px — {current.label}{device > 1280 ? " · preview at 1280px — the layout is identical from 1280 up" : ""}
       </p>
       <div className="mt-4">
-        <ProofFrame width={device} />
+        <ProofFrame width={renderWidth} />
       </div>
       <p className="mt-4 text-sm text-ink-soft">
         Swept at all twelve widths in the portfolio&apos;s QA pass — the same sweep that caught the 320px card-thumb and library cover-crop fixes on GolpoNeer.

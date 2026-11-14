@@ -2,11 +2,14 @@
 
 /* Floating Glass Bottom Dock — the Atelier navigation (demo 2026-11-14).
  * A compact macOS-inspired pill, fixed to the bottom, glassy and out
- * of the way. One thumb on mobile. Resume links to the PDF. */
+ * of the way. One thumb on mobile. Resume links to the PDF. Section
+ * links are root-relative (/#work, not #work) so they work from the
+ * demo pages too — on the lab pages the bare #work anchor has no
+ * target and the button does nothing (fixed 2026-11-14). */
 const LINKS = [
-  { label: "Work", href: "#work" },
-  { label: "Approach", href: "#approach" },
-  { label: "About", href: "#about" },
+  { label: "Work", href: "/#work" },
+  { label: "Approach", href: "/#approach" },
+  { label: "About", href: "/#about" },
   { label: "Resume", href: "/Musabbir_Rahman_Resume.pdf", external: true },
 ];
 
@@ -31,7 +34,7 @@ export default function Dock() {
           </a>
         ))}
         <a
-          href="#contact"
+          href="/#contact"
           className="ml-1 whitespace-nowrap rounded-full bg-signal px-3 py-2 text-[12px] font-bold text-white transition-transform hover:scale-[1.04] sm:px-5 sm:text-[13px]"
         >
           Get in Touch
