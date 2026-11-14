@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 /* Live Product Deck — the Atelier (demo 2026-11-14).
  * The deck lives BELOW the hero (the hero rule: headline + CTAs
@@ -9,8 +9,11 @@ import { useState } from "react";
  * 2) Sweet Cravings Checkout — a working mini-preview of the
  *    order flow (no real order is placed).
  * 3) Viewport Stress-Test — a live slider, 320px to 1440px.
- * Numbers are real: 38 stories, 511 chapters, 1,139,932 words,
- * verified live 2026-11-13. */
+ * Pulse numbers are LIVE (added 2026-11-14): fetched from
+ * GolpoNeer's public API on every page load, same query the
+ * old GolpoNeerLiveStats strip used. The baked-in numbers below
+ * are the fallback — verified live 2026-11-14 (38 / 511 /
+ * 1,139,932) — shown first, kept if the fetch fails. */
 
 function Card({ children, className = "" }) {
   return (
@@ -31,19 +34,79 @@ function Eyebrow({ children }) {
 }
 
 /* --- 1 · GolpoNeer Live Pulse --- */
+/* Same public read the old GolpoNeerLiveStats strip used. The key is
+ * publishable — it ships in GolpoNeer's own site bundle and only
+ * reads public data. */
+const SUPABASE_URL = "https://gwqngoywcupkytyxukfu.supabase.co/rest/v1";
+const PUBLISHABLE_KEY = "sb_publishable_zynfKNRZXjfZSFX6dVrdhg_mimIkF1h";
+const FALLBACK_STATS = { stories: 38, chapters: 511, words: 1139932 };
+
+function parseTotal(contentRange) {
+  if (!contentRange) return null;
+  const total = parseInt(contentRange.split("/")[1], 10);
+  return Number.isFinite(total) ? total : null;
+}
+
+/* Bangla digits for the toggle — "1.1M+" becomes "১.১M+"; the dot
+ * and the M stay as they are. */
+const BN_DIGITS = "০১২৩৪৫৬৭৮৯";
+function toBn(s) {
+  return String(s).replace(/\d/g, (d) => BN_DIGITS[d]);
+}
+
+function formatWords(words) {
+  return `${(words / 1e6).toFixed(1)}M+`;
+}
+
 function PulseCard() {
   const [bn, setBn] = useState(false);
-  const stats = bn
-    ? [
-        { n: "৩৮+", l: "গল্প" },
-        { n: "৫১১+", l: "পর্ব" },
-        { n: "১.১M+", l: "শব্দ" },
-      ]
-    : [
-        { n: "38+", l: "Stories" },
-        { n: "511+", l: "Chapters" },
-        { n: "1.1M+", l: "Words" },
-      ];
+  /* Fallback first: the card renders instantly with the known
+   * numbers and swaps to the live ones when the fetch returns.
+   * Same shape, same format, so the swap moves nothing. */
+  const [stats, setStats] = useState(FALLBACK_STATS);
+
+  useEffect(() => {
+    let cancelled = false;
+    async function load() {
+      try {
+        const headers = {
+          apikey: PUBLISHABLE_KEY,
+          Authorization: `Bearer ${PUBLISHABLE_KEY}`,
+          Prefer: "count=exact",
+        };
+        const [storiesRes, chaptersRes] = await Promise.all([
+          fetch(`${SUPABASE_URL}/stories?select=id`, { headers }),
+          fetch(`${SUPABASE_URL}/chapters?select=word_count&status=eq.published&limit=1000`, { headers }),
+        ]);
+        if (!storiesRes.ok || !chaptersRes.ok) return;
+        const stories = parseTotal(storiesRes.headers.get("content-range"));
+        const chapters = await chaptersRes.json();
+        if (!Array.isArray(chapters)) return;
+        const words = chapters.reduce((sum, c) => sum + (c.word_count || 0), 0);
+        if (cancelled) return;
+        setStats({
+          stories: stories ?? FALLBACK_STATS.stories,
+          chapters: chapters.length,
+          words,
+        });
+      } catch {
+        // Keep the known numbers; the card stays useful without a fetch.
+      }
+    }
+    load();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  const statsDisplay = [
+    { n: `${stats.stories}+`, l: bn ? "গল্প" : "Stories" },
+    { n: `${stats.chapters}+`, l: bn ? "পর্ব" : "Chapters" },
+    { n: formatWords(stats.words), l: bn ? "শব্দ" : "Words" },
+  ];
+  const statsShown = bn
+    ? statsDisplay.map((s) => ({ n: toBn(s.n), l: s.l }))
+    : statsDisplay;
   return (
     <Card>
       <div className="flex items-start justify-between gap-3">
@@ -62,16 +125,29 @@ function PulseCard() {
           {bn ? "EN" : "বাংলা"}
         </button>
       </div>
-      <p className="mt-2 text-sm leading-relaxed text-ink-soft">
+      {/* min-h on phones (2026-11-14): the English description wraps
+          to 3 lines while the Bangla wraps to 2 below 360px, and to
+          2 lines while the Bangla fits on 1 between ~410-560px — so
+          toggling the language shrank the card. Reserving the taller
+          line count keeps the box the same in both languages. */}
+      <p className="mt-2 text-sm leading-relaxed text-ink-soft max-[360px]:min-h-[69px] min-[361px]:max-[575px]:min-h-[46px]">
         {bn
           ? "বাংলা ও ইংরেজি গল্পের প্ল্যাটফর্ম — পড়া ও লেখা ফ্রি, চিরকাল।"
           : "A bilingual Bangla / English story platform — reading and writing free, forever."}
       </p>
       <div className="mt-5 grid grid-cols-3 divide-x divide-hairline rounded-xl border border-hairline bg-paper py-3">
-        {stats.map((s) => (
-          <div key={s.l} className="px-2 text-center">
-            <p className="font-mono text-lg font-bold tabular-nums text-ink sm:text-xl">{s.n}</p>
-            <p className="mt-0.5 text-[11px] font-medium text-ink-soft">{s.l}</p>
+        {statsShown.map((s) => (
+          <div key={s.l} className="min-w-0 px-2 text-center md:px-1 lg:px-2">
+            {/* whitespace-nowrap: the number line must never break,
+                at any width (2026-11-14). tabular-nums keeps every
+                digit the same width, so a live swap moves nothing.
+                md: one step smaller + tighter cells — at 768-1023 the
+                deck is 3-across, so the cells are only ~43px and
+                "1.1M+" at text-xl (60px) cannot fit; 16px (48px) in
+                a 52px cell fits. Back to text-xl at lg, where the
+                cells are 72px+. */}
+            <p className="whitespace-nowrap font-mono text-lg font-bold tabular-nums text-ink sm:text-xl md:text-base lg:text-xl">{s.n}</p>
+            <p className="mt-0.5 whitespace-nowrap text-[11px] font-medium text-ink-soft">{s.l}</p>
           </div>
         ))}
       </div>
@@ -79,7 +155,12 @@ function PulseCard() {
           was duplicated — the showcase below already shows it as the
           reader mock. The card was also reader-only; this line states
           the writer side, which the site must show equally. */}
-      <p className="mt-4 border-t border-hairline pt-4 text-sm leading-relaxed text-ink-soft">
+      {/* min-h on phones (2026-11-14): the English writer line wraps
+          to 2 lines while the Bangla fits on 1 between ~410-448px, so
+          toggling shrank the card by 23px. Reserving pt-4 + 2 lines
+          (63px) keeps the box the same in both languages. (Tailwind
+          v4 max-* is exclusive, so 450 covers the 440-448 edge.) */}
+      <p className="mt-4 border-t border-hairline pt-4 text-sm leading-relaxed text-ink-soft max-[450px]:min-h-[63px]">
         <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-ink-faint">
           {bn ? "লেখকদের জন্য — " : "For writers — "}
         </span>
@@ -240,7 +321,7 @@ export default function ProductDeck() {
           Touch them. These are the real products, not screenshots.
         </p>
       </div>
-      <div className="mt-8 grid gap-4 md:grid-cols-3">
+      <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-3">
         <PulseCard />
         <CheckoutCard />
         <StressCard />
