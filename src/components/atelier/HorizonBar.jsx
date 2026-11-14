@@ -74,7 +74,10 @@ export default function HorizonBar() {
   return (
     <header className="atelier-surface sticky top-0 z-50 border-b border-hairline bg-paper/85 backdrop-blur-md">
       <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-4 sm:px-6">
-        <a href="#top" className="text-[15px] font-extrabold tracking-[-0.02em] text-ink">
+        {/* The wordmark always goes home (fixed 2026-11-14): it used to
+            point at #top, an anchor that doesn't exist on the demo
+            pages — so the brand was a dead link inside the lab. */}
+        <a href="/" className="text-[15px] font-extrabold tracking-[-0.02em] text-ink">
           Musabbir Rahman
         </a>
         <div className="flex items-center gap-3 sm:gap-5">

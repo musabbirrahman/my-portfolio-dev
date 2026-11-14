@@ -68,6 +68,11 @@ export default function LayoutFixDemo() {
       </div>
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10">
+        {/* Way out (fixed 2026-11-14): the demo pages had no exit at the
+            top — the dock anchors and the wordmark all point to sections
+            that don't exist on demo pages, and the only back link was
+            buried at the very bottom. */}
+        <p className="mb-6"><Link href="/" className="text-sm font-bold text-neutral-900 underline underline-offset-4">← Back to portfolio</Link></p>
         <h1 className="text-3xl sm:text-4xl font-extrabold leading-tight">Layout fix: before and after</h1>
         <p className="mt-3 text-neutral-500 leading-relaxed max-w-2xl">The same cards, shown first the broken way, then the fixed way. Use the toggle below. The phone frame is 360px wide, a common phone width. This demo now covers five bugs, not three.</p>
 
@@ -126,7 +131,7 @@ image: aspect ratio kept;`}</pre>
           </ul>
         </div>
 
-        <p className="mt-8 text-center text-sm text-neutral-500"><Link href="/#projects" className="underline">Back to portfolio</Link> · Demo by Musabbir Rahman</p>
+        <p className="mt-8 text-center text-sm text-neutral-500"><Link href="/" className="underline">Back to portfolio</Link> · Demo by Musabbir Rahman</p>
       </div>
     </main>
   );

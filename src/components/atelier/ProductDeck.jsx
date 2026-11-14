@@ -110,7 +110,10 @@ function CheckoutCard() {
             <span className="font-mono text-sm font-bold tabular-nums text-ink">{qty}</span>
             <button type="button" aria-label="Increase quantity" onClick={() => setQty(Math.min(9, qty + 1))} className="flex h-7 w-7 items-center justify-center rounded-full text-lg font-bold text-ink hover:bg-muted">+</button>
           </div>
-          <span className="font-mono text-base font-bold tabular-nums text-ink">৳{price * qty}</span>
+          {/* Fixed-width, right-aligned: the total grows leftward from a
+              fixed right edge, so the row never moves when qty changes
+              (fixed 2026-11-14 — the total used to jump 10px sideways). */}
+          <span className="w-[5ch] text-right font-mono text-base font-bold tabular-nums text-ink">৳{price * qty}</span>
         </div>
         <div className="mt-4 grid grid-cols-2 gap-2">
           {["bKash", "Nagad"].map((m) => (
@@ -126,8 +129,11 @@ function CheckoutCard() {
             </button>
           ))}
         </div>
-        <p className="mt-3 text-center font-mono text-[11px] text-ink-faint">
-          Paying with {pay} · Total ৳{price * qty} + delivery
+        {/* One line, always: the old "Paying with …" line wrapped to two
+            lines and reflowed as the total grew. Shortened + nowrap so
+            the card height never changes with qty. */}
+        <p className="mt-3 whitespace-nowrap text-center font-mono text-[11px] text-ink-faint">
+          {pay} · Total ৳{price * qty} + delivery
         </p>
       </div>
       <a
@@ -161,7 +167,9 @@ function StressCard() {
             <span className="h-2 w-2 rounded-full bg-[#FF5F57]" />
             <span className="h-2 w-2 rounded-full bg-[#FEBC2E]" />
             <span className="h-2 w-2 rounded-full bg-[#28C840]" />
-            <span className="ml-2 font-mono text-[10px] text-ink-faint">musabbirrahman.vercel.app</span>
+            {/* Truncated: the full URL overflowed the mini frame by 69px
+                at every width (fixed 2026-11-14). */}
+            <span className="ml-2 min-w-0 flex-1 truncate font-mono text-[10px] text-ink-faint">musabbirrahman.vercel.app</span>
           </div>
           <div className="space-y-2 p-3">
             <div className="h-3 w-3/4 rounded bg-ink/80" />

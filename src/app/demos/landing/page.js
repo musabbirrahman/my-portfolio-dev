@@ -54,6 +54,9 @@ export default function LandingDemo() {
         <p className="text-xs sm:text-sm text-amber-900">Demo landing page — fictional business, built for portfolio only. Prices and hours below are examples, not a real shop.</p>
       </div>
 
+      {/* Way out (fixed 2026-11-14): see the layout-fix page — demo pages
+          had no exit at the top. */}
+      <p className="max-w-6xl mx-auto px-4 sm:px-6 pt-6"><Link href="/" className="text-sm font-bold text-neutral-900 underline underline-offset-4">← Back to portfolio</Link></p>
       <header className="max-w-6xl mx-auto px-4 sm:px-6 py-6 flex flex-wrap items-center justify-between gap-4">
         <div className="min-w-0">
           <p className="text-2xl font-extrabold tracking-tight">Shonar Bakery</p>
@@ -170,7 +173,7 @@ export default function LandingDemo() {
             </form>
           )}
         </div>
-        <p className="mt-6 text-center text-sm text-neutral-500"><Link href="/#projects" className="underline">Back to portfolio</Link> · Demo by Musabbir Rahman</p>
+        <p className="mt-6 text-center text-sm text-neutral-500"><Link href="/" className="underline">Back to portfolio</Link> · Demo by Musabbir Rahman</p>
       </section>
     </main>
   );
