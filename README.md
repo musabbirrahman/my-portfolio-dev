@@ -1,36 +1,39 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Musabbir Rahman — Portfolio
 
-## Getting Started
+Independent builder — digital products from zero to live.
 
-First, run the development server:
+Live: https://musabbirrahman.vercel.app
+
+## What this is
+
+My portfolio. Not a gallery of mockups — every project on it is a live product you can open and use.
+
+- **GolpoNeer** (golponeer.com) — a Bangla and English story platform. Read and write, chapter by chapter, free forever. 38 stories, 511 chapters, 1.1M+ words — the counts on the page are fetched live.
+- **Sweet Cravings** (sweetcravingsrajshahi.com) — a live dessert storefront in Rajshahi: real menu, bKash / Nagad checkout, Telegram alerts to the kitchen, and an admin panel with order caps and loyalty rewards.
+- **Responsive Lab** — hands-on engineering demos: a landing page demo and a layout-fix demo (five named bugs, before/after), plus a proof sweep of the fixed layout at all twelve widths, 320–1920, each measured live.
+
+## How it's built
+
+- Next.js 16, React 19, Tailwind CSS v4, Vercel
+- Self-hosted fonts, light and dark themes
+- Every UI change is verified on twelve viewports (320–1920) before it ships
+- AI-assisted build, directed, tested, published, and operated by me — verified by hand on phone, tablet, and desktop
+
+## Run it locally
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Work with me
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+No calls, no meetings. The whole job runs in writing: (1) written brief and scope lock, (2) a staging link tested on real viewports, (3) zero-meeting iteration until verified.
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Email: musabbirrahman.dev@gmail.com
+- Resume: https://musabbirrahman.vercel.app/Musabbir_Rahman_Resume.pdf
+- GitHub: https://github.com/musabbirrahman
+- LinkedIn: https://www.linkedin.com/in/musabbirrahman
+- Facebook: https://www.facebook.com/dev.musabbirrahman
