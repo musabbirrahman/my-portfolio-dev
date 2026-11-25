@@ -7,6 +7,7 @@
 const PROFILES = [
   { label: "GitHub", href: "https://github.com/musabbirrahman" },
   { label: "LinkedIn", href: "https://www.linkedin.com/in/musabbirrahman" },
+  { label: "Facebook", href: "https://www.facebook.com/dev.musabbirrahman" },
   { label: "X", href: "https://x.com/MusabbirRahman0" },
   { label: "Medium", href: "https://medium.com/@musabbirrahman" },
   { label: "Resume", href: "/Musabbir_Rahman_Resume.pdf", external: true },
@@ -16,9 +17,6 @@ export default function Ledger() {
   return (
     <section id="about" className="mx-auto max-w-6xl scroll-mt-24 px-4 pb-20 sm:px-6">
       <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-ink-faint">Credentials & Background</p>
-      <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-ink-soft">
-        I&apos;m Musabbir Rahman, an independent builder from Jamalpur, Bangladesh. I design and engineer digital products from zero to live — GolpoNeer, a free bilingual home for Bangla and English stories, and Sweet Cravings, a full ordering website for a real dessert shop in Rajshahi. I learn by building: every product is verified on twelve viewports before it ships, and every line of it is something I can explain. Right now I&apos;m learning backend and taking on small freelance builds.
-      </p>
       <div className="mt-6 overflow-hidden rounded-2xl border border-hairline bg-card">
         <div className="grid divide-y divide-hairline md:grid-cols-3 md:divide-x md:divide-y-0">
           <div className="p-6">
