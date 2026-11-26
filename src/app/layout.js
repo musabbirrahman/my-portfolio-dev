@@ -9,6 +9,9 @@ import { Analytics } from "@vercel/analytics/next";
  * and Footer stay in the repo, unused. */
 export const metadata = {
   metadataBase: new URL("https://musabbirrahman.vercel.app"),
+  alternates: {
+    canonical: "/",
+  },
   title: "Musabbir Rahman — Independent Builder",
   description:
     "Independent builder from Jamalpur, Bangladesh. I design and engineer digital products from zero to live — fast, mobile-first web applications, verified on twelve viewports before they ship.",
@@ -40,6 +43,33 @@ export const metadata = {
   },
 };
 
+/* Person structured data (2026-11-26, Google visibility plan Step 1):
+ * tells search engines this site IS Musabbir Rahman and ties it to
+ * his profiles. Same links as GolpoNeer's founder sameAs, minus the
+ * portfolio itself. Pattern follows the installed Next 16 JSON-LD guide. */
+const PERSON_JSON_LD = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Musabbir Rahman",
+  url: "https://musabbirrahman.vercel.app/",
+  jobTitle: "Independent Builder",
+  description:
+    "Independent builder from Jamalpur, Bangladesh. Founder of GolpoNeer — a calm, free home for Bangla and English stories.",
+  sameAs: [
+    "https://github.com/musabbirrahman",
+    "https://www.linkedin.com/in/musabbirrahman",
+    "https://musabbirrahman.medium.com",
+    "https://x.com/MusabbirRahman0",
+    "https://www.facebook.com/dev.musabbirrahman",
+  ],
+  affiliation: {
+    "@type": "Organization",
+    name: "GolpoNeer",
+    url: "https://golponeer.com",
+  },
+  knowsAbout: ["GolpoNeer", "React", "Next.js", "Supabase", "TypeScript"],
+};
+
 const THEME_INIT = `(function(){try{var t=localStorage.getItem('atelier-theme');if(!t){t=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){document.documentElement.setAttribute('data-theme','light');}})();`;
 
 export default function RootLayout({ children }) {
@@ -47,6 +77,12 @@ export default function RootLayout({ children }) {
     <html lang="en" data-theme="light" className="scroll-smooth">
       <head>
         <script dangerouslySetInnerHTML={{ __html: THEME_INIT }} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(PERSON_JSON_LD).replace(/</g, "\\u003c"),
+          }}
+        />
       </head>
       <body>
         <HorizonBar />
