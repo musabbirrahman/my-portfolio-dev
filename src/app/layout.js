@@ -35,6 +35,9 @@ export const metadata = {
     description: "Designing and engineering digital products from zero to live.",
     images: ["/og-image.jpg"],
   },
+  verification: {
+    google: "6qH9hGA-wv_kVEyP7m2ifDrqVuPZnPQIijTq6CS5U1w",
+  },
 };
 
 const THEME_INIT = `(function(){try{var t=localStorage.getItem('atelier-theme');if(!t){t=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){document.documentElement.setAttribute('data-theme','light');}})();`;
